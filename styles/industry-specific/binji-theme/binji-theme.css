@@ -44,6 +44,7 @@ body.binji-theme {
 
 body.binji-theme main {
   flex: 1;
+  padding-top: 90px; /* offset fixed header (min-height: 90px in styles.css) */
 }
 
 body.binji-theme:has(.user-profile-host) header nav .nav-sections,
