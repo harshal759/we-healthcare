@@ -185,7 +185,7 @@ main > .section.binji-registration-container > .binji-registration-wrapper {
   border-radius: 10px;
   position: relative;
   cursor: pointer;
-  margin: 2px 0 0;
+  margin: 5px 0 0;
   transition: background-color 0.2s ease;
   padding: 0;
 }
