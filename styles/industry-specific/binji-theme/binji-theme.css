@@ -83,6 +83,14 @@ body.binji-theme:has(.user-profile-host) main .product-detail .pd-video-layout v
   display: block;
 }
 
+body.binji-theme:has(.user-profile-host) header nav .nav-sections {
+  display: flex;
+}
+
+body.binji-theme:has(.user-profile-host) footer .footer .section:not(.default) ul {
+  display: flex;
+}
+
 /* (b) Header */
 /* stylelint-disable no-descending-specificity -- nav-link vs lang-switcher rules target
    unrelated elements; cross-selector specificity ordering is a false positive here. */
