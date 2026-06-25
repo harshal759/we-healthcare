@@ -9,7 +9,7 @@ import {
 
 const PUBLISH_GRAPHQL_PROXY_ENDPOINT = "https://275323-918sangriatortoise.adobeioruntime.net/api/v1/web/dx-excshell-1/fetch-product-information";
 const AUTHOR_GRAPHQL_BASE = '/graphql/execute.json/dsn-eds-configuration/';
-const DEFAULT_GRAPHQL_QUERY_NAME = 'productsListByPath';
+const DEFAULT_GRAPHQL_QUERY_NAME = 'productListByPathBodea';
 
 // Query name comes from the project's placeholders sheet (key: query-name);
 // missing sheet or row falls back to the default query.
