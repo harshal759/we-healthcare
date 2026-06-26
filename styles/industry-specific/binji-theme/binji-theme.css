@@ -44,7 +44,6 @@ body.binji-theme {
 
 body.binji-theme main {
   flex: 1;
-  padding-top: 90px; /* offset fixed header (min-height: 90px in styles.css) */
 }
 
 body.binji-theme:has(.user-profile-host) header nav .nav-sections,
@@ -89,6 +88,23 @@ body.binji-theme:has(.user-profile-host) header nav .nav-sections {
 
 body.binji-theme:has(.user-profile-host) footer .footer .section:not(.default) ul {
   display: flex;
+}
+
+body.binji-theme main .product-detail .pd-video-layout .pd-video-image-wrapper {
+  display: block;
+  height: 500px;
+}
+
+body.binji-theme main .product-detail .pd-video-layout video {
+  display: none;
+}
+
+body.binji-theme:has(.user-profile-host) main .product-detail .pd-video-layout .pd-video-image-wrapper {
+  display: none;
+}
+
+body.binji-theme:has(.user-profile-host) main .product-detail .pd-video-layout video {
+  display: block;
 }
 
 /* (b) Header */
@@ -579,6 +595,19 @@ body.binji-theme main .product-detail .pd-video-layout .pd-video-player {
   border-radius: 0;
   min-height: 380px;
   max-height: 720px;
+}
+
+body.binji-theme main .product-detail .pd-video-layout .pd-video-category-tag {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #ff8038;
+  border-radius: 5px;
+  font-weight: 500;
+  color: #fff;
+}
+
+body.binji-theme main .product-detail .pd-video-layout .pd-video-player {
+  border-radius: 0;
 }
 
 body.binji-theme main .product-detail .pd-video-layout .pd-video-category-tag {
