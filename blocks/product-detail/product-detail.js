@@ -331,9 +331,8 @@ function buildActions(product, isAuthor, eventConfig) {
         price: price || 0,
         quantity: 1, 
       });
-      if (eventConfig.addToCart) {
-        dispatchCustomEvent(eventConfig.addToCart);
-      }
+      actionsEl.append(addToCartBtn);
+    }
 
       addToCartBtn.textContent = "Added to Cart ✓";
       setTimeout(() => {
@@ -749,7 +748,7 @@ export default async function decorate(block) {
   const eventConfig = {
     productView: (config.productvieweventtype || config['product-view-event-type'] || '').trim(),
     addToCart: (config.addtocarteventtype || config['add-to-cart-event-type'] || '').trim(),
-    addToWishlist: (config.addtowishlisteventtype || config['add-to-wishlist-event-type'] || '').trim(),
+    addToWishlist: (config.addtoweventtype || config['add-to-wishlist-event-type'] || '').trim(),
     showAddToCartButton: (config.showaddtocartbutton === undefined && config['show-add-to-cart-button'] === undefined)
       ? true
       : isTruthy(config.showaddtocartbutton ?? config['show-add-to-cart-button']),
