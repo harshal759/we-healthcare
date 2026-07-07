@@ -86,8 +86,18 @@ body.binji-theme:has(.user-profile-host) header nav .nav-sections {
   display: flex;
 }
 
-body.binji-theme:has(.user-profile-host) footer .footer .section:not(.default) ul {
-  display: flex;
+body.binji-theme main .section.video-container, body.binji-theme main .section.video-container .video-wrapper {
+  max-width: unset;
+}
+
+body.binji-theme main .section.video-container .video.block {
+  height: 360px;
+}
+
+body.binji-theme main .section.video-container video {
+  height: 800px;
+  width: auto;
+  object-fit: cover;
 }
 
 body.binji-theme main .product-detail .pd-video-layout .pd-video-image-wrapper {
