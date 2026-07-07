@@ -1496,7 +1496,8 @@ main .product-detail .recipe-sidebar .pd-rec-title {
   font-weight: 700;
   color: #2C2C2C;
   margin: 0.83em 0;
-  padding: 0;
+  padding-top: 0.8em;
+  padding-bottom: 0.25em;
 }
 
 /* 3. Convert Grid to Vertical Stack */
