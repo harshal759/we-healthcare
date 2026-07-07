@@ -1253,99 +1253,101 @@ main .product-detail .recipe-sidebar .pd-actions {
 
 /* Stack the main container */
 main .product-detail .pd-container.pd-video-layout {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  grid-template-columns: 1fr;
+  gap: 32px;
 }
 
 /* Constrain video/image height and remove sticky positioning */
 main .product-detail .pd-container.pd-video-layout .pd-image {
-    position: static;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 main .product-detail .pd-video-layout .pd-video-image-wrapper {
-    display: none;
+  display: none;
 }
 
 main .product-detail .pd-video-layout .pd-video-player {
-    width: 100%;
-    height: 800px;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    border-radius: 12px;
+  width: 100%;
+  height: 800px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 12px;
 }
 
 /* Content Area Grid mapping */
 main .product-detail .pd-container.pd-video-layout .pd-content {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    grid-template-areas:
-        "name meta"
-        "cast cast"
-        "description description"
-        "extras extras"
-        "quantity quantity"
-        "actions actions";
-    column-gap: 24px;
-    align-items: center;
-    padding-top: 0;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-areas:
+    "name meta"
+    "cast cast"
+    "description description"
+    "extras extras"
+    "quantity quantity"
+    "actions actions";
+  column-gap: 24px;
+  align-items: center;
+  padding-top: 0;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-name {
-    grid-area: name;
-    width: fit-content;
+  grid-area: name;
+  width: fit-content;
 }
 
 /* Align meta items (tag, age, rating) side-by-side with the name */
 main .product-detail .pd-container.pd-video-layout .pd-video-meta {
-    grid-area: meta;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Push to the right edge */
-    flex-wrap: wrap;
-    gap: 16px;
-    margin: 0; 
+  grid-area: meta;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* Push to the right edge */
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-cast {
-    grid-area: cast;
-    font-size: 1rem;
-    line-height: 1.75;
-    color: #495057;
-    margin-top: 24px;
+  grid-area: cast;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #495057;
+  margin-top: 24px;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-cast strong {
-    color: #212529;
+  color: #212529;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-description {
-    grid-area: description;
-    border-top: none; /* Removed border for clean flow */
-    padding-top: 0;
-    margin: 24px 0 0;
+  grid-area: description;
+  border-top: none;
+  /* Removed border for clean flow */
+  padding-top: 0;
+  margin: 24px 0 0;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-extras {
-    grid-area: extras;
-    margin-top: 24px;
+  grid-area: extras;
+  margin-top: 24px;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-quantity {
-    grid-area: quantity;
-    margin-top: 24px;
+  grid-area: quantity;
+  margin-top: 24px;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-actions {
-    grid-area: actions;
-    justify-content: flex-start;
-    max-width: 520px;
-    margin-top: 24px;
+  grid-area: actions;
+  justify-content: flex-start;
+  max-width: 520px;
+  margin-top: 24px;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-actions .pd-btn {
@@ -1354,72 +1356,85 @@ main .product-detail .pd-container.pd-video-layout .pd-actions .pd-btn {
 
 /* Pill and Badge Styles (keeping default colors) */
 main .product-detail .pd-video-layout .pd-video-category-tag {
-    padding: 6px 16px;
-    border-radius: 24px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    background: #212529;
-    color: #fff;
-    cursor: default;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  padding: 6px 16px;
+  border-radius: 24px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: #212529;
+  color: #fff;
+  cursor: default;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 main .product-detail .pd-video-layout .pd-video-age {
-    border: 2px solid #212529;
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-weight: 700;
-    font-size: 0.875rem;
-    color: #212529;
+  border: 2px solid #212529;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #212529;
 }
 
 main .product-detail .pd-video-layout .pd-video-rating {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 main .product-detail .pd-video-layout .pd-video-rating .filled-stars {
-    color: #f37b2d;
+  color: #f37b2d;
 }
 
 main .product-detail .pd-video-layout .pd-video-rating .empty-stars {
-    color: #ccc;
+  color: #ccc;
 }
 
 /* Mobile Stacked Override */
-@media (width <= 768px) {
+@media (width <=768px) {
+  .section.product-detail-container:has(.pd-video-layout) .product-detail {
+    padding: 0 16px;
+  }
+
   main .product-detail .pd-video-layout .pd-video-player {
     aspect-ratio: 16 / 9;
     width: 100%;
     height: unset;
   }
 
-    main .product-detail .pd-container.pd-video-layout .pd-content {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "name"
-            "meta"
-            "cast"
-            "description"
-            "extras"
-            "quantity"
-            "actions";
-        gap: 16px;
-        align-items: start;
-    }
+  main .product-detail .pd-container.pd-video-layout .pd-content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "meta"
+      "cast"
+      "description"
+      "extras"
+      "quantity"
+      "actions";
+    column-gap: 16px;
+    align-items: start;
+  }
 
-    main .product-detail .pd-container.pd-video-layout .pd-video-meta {
-        justify-content: flex-start;
-    }
-    
-    main .product-detail .pd-container.pd-video-layout .pd-cast {
-        margin-top: 0;
-    }
+  main .product-detail .pd-container.pd-video-layout .pd-video-meta {
+    margin-top: 16px;
+    justify-content: flex-start;
+  }
+
+  main .product-detail .pd-container.pd-video-layout .pd-cast {
+    margin-top: 16px;
+  }
+
+  main .product-detail .pd-container.pd-video-layout .pd-description,
+  main .product-detail .pd-container.pd-video-layout .pd-extras,
+  main .product-detail .pd-container.pd-video-layout .pd-quantity,
+  main .product-detail .pd-container.pd-video-layout .pd-actions {
+    margin-top: 16px;
+  }
 }
+
 /* --------------------------------------------------------------------------
    Hero Header Banner (50/50 Split)
    -------------------------------------------------------------------------- */
-  
+
 main .product-detail-container:has(.recipe-detail) {
   max-width: 1600px;
 }
@@ -1627,7 +1642,8 @@ main .product-detail .recipe-sidebar .pd-rec-card-media {
 }
 
 main .product-detail .recipe-sidebar .pd-rec-card-media img {
-  border-radius: 8px; /* Slightly sharper radius for recipes */
+  border-radius: 8px;
+  /* Slightly sharper radius for recipes */
   height: 100%;
 }
 
@@ -1649,7 +1665,7 @@ main .product-detail .recipe-sidebar .pd-rec-card-title {
 
 /* Hide the "Recipes" category tag in the sidebar */
 main .product-detail .recipe-sidebar .pd-rec-card-category {
-  display: none; 
+  display: none;
 }
 
 /* 5. Inject the "Try it" button visually */
@@ -1684,7 +1700,7 @@ main .product-detail .recipe-sidebar .pd-rec-card:hover .pd-rec-card-meta::after
   main .product-detail .recipe-hero {
     background: #F2F3F5;
   }
-  
+
   main .product-detail .recipe-hero__wrapper {
     flex-direction: column;
   }
@@ -1758,7 +1774,8 @@ main .product-detail .pd-extra-checkbox {
   height: 18px;
   margin: 0;
   cursor: pointer;
-  accent-color: #212529; /* Matches the primary dark theme color */
+  accent-color: #212529;
+  /* Matches the primary dark theme color */
 }
 
 main .product-detail .pd-extra-label {
@@ -1793,7 +1810,8 @@ main .product-detail .pd-quantity-select {
   background-color: #fff;
   border: 1px solid #cbd5e1;
   border-radius: 4px;
-  appearance: none; /* Removes native OS styling for a custom dropdown arrow */
+  appearance: none;
+  /* Removes native OS styling for a custom dropdown arrow */
   -webkit-appearance: none;
   cursor: pointer;
   transition: border-color 0.2s ease;
@@ -1833,5 +1851,6 @@ main .product-detail .recipe-sidebar .pd-quantity {
 
 main .product-detail .recipe-sidebar .pd-actions {
   width: 100%;
-  flex-direction: column; /* Stacks buttons neatly in the narrow sidebar */
+  flex-direction: column;
+  /* Stacks buttons neatly in the narrow sidebar */
 }
