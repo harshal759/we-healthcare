@@ -1289,7 +1289,7 @@ main .product-detail .pd-container.pd-video-layout .pd-content {
         "extras extras"
         "quantity quantity"
         "actions actions";
-    gap: 24px;
+    column-gap: 24px;
     align-items: center;
     padding-top: 0;
     max-width: 1200px;
@@ -1314,11 +1314,10 @@ main .product-detail .pd-container.pd-video-layout .pd-video-meta {
 
 main .product-detail .pd-container.pd-video-layout .pd-cast {
     grid-area: cast;
-    margin-top: 24px;
-    margin-bottom: 24px;
     font-size: 1rem;
     line-height: 1.75;
     color: #495057;
+    margin-top: 24px;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-cast strong {
@@ -1329,20 +1328,28 @@ main .product-detail .pd-container.pd-video-layout .pd-description {
     grid-area: description;
     border-top: none; /* Removed border for clean flow */
     padding-top: 0;
+    margin: 24px 0 0;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-extras {
     grid-area: extras;
+    margin-top: 24px;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-quantity {
     grid-area: quantity;
+    margin-top: 24px;
 }
 
 main .product-detail .pd-container.pd-video-layout .pd-actions {
     grid-area: actions;
     justify-content: flex-start;
     max-width: 520px;
+    margin-top: 24px;
+}
+
+main .product-detail .pd-container.pd-video-layout .pd-actions .pd-btn {
+  flex: unset;
 }
 
 /* Pill and Badge Styles (keeping default colors) */
