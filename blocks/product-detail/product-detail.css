@@ -1248,6 +1248,9 @@ main .product-detail .recipe-sidebar .pd-actions {
 .section.product-detail-container:has(.pd-video-layout) .product-detail,
 .section.product-detail-container:has(.pd-video-layout) .product-detail-wrapper {
   max-width: 1420px;
+}
+
+.section.product-detail-container:has(.pd-video-layout) .product-detail {
   padding: 0;
 }
 
