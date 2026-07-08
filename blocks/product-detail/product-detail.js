@@ -633,7 +633,6 @@ function buildRecommendations(currentProduct, allProducts, isAuthor, recommended
   const section = document.createElement("div");
   section.className = "pd-recommendations";
 
-  const isHallibyTheme = document.body.classList.contains("halliby-theme");
   const title = document.createElement("h2");
   title.className = "pd-rec-title";
   title.textContent = relatedProductsTitle || "YOU MAY ALSO LIKE";
