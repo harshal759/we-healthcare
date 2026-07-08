@@ -688,8 +688,6 @@ function buildRecipeDetail(product, allProducts, isAuthor, eventConfig = {}, rec
 
   const mainSection = document.createElement("div");
   mainSection.className = "recipe-main";
-  
-  // Use the config value for the title, fallback to "Ingredients"
   mainSection.innerHTML = `
     <h2 class="recipe-main__title">${eventConfig.ingredientsTitle}</h2>
     <div class="recipe-main__content">
@@ -724,7 +722,6 @@ function buildRecipeDetail(product, allProducts, isAuthor, eventConfig = {}, rec
     `;
   }
 
-  // Inject Standard Recommendations directly into the right sidebar container
   if (eventConfig.showYouMayAlsoLikeSection) {
     const recs = buildRecommendations(product, allProducts, isAuthor, recommendedPath, relatedProductsTitle);
     if (recs) {
