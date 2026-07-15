@@ -194,6 +194,11 @@ function buildCreateAccountFormDef(config = {}) {
   const bodeaIndustries   = ['', 'technology', 'finance', 'healthcare', 'retail', 'other'];
   const bodeaTopics       = ['', 'hi-tech', 'design', 'marketing', 'development'];
 
+  // Bodea Options
+  const bodeaCompanySizes = ['', '<50', '50-100', '100-1000', '1000+'];
+  const bodeaIndustries   = ['', 'technology', 'finance', 'healthcare', 'retail', 'other'];
+  const bodeaTopics       = ['', 'hi-tech', 'design', 'marketing', 'development'];
+
   // Shared Core Fields
   const emailColSpan = (isFrescopaVariant || isHallibyVariant || isBodeaVariant) ? 6 : 12;
 
