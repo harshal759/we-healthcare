@@ -719,4 +719,129 @@ body.bodea-theme main .section.bodea-article-content .button:hover {
   background-color: #e6e6e6;
   color: #222;
   text-decoration: unset;
-}/*# sourceMappingURL=bodea-theme.v2.css.map */
+}
+
+/* ==========================================================================
+   Hamburger Menu Styles (Desktop & Mobile)[cite: 1]
+   ========================================================================== */
+
+.bodea-theme header nav .nav-hamburger button {
+  color: var(--nav-text-color);
+}
+
+/* Mobile hamburger[cite: 1] */
+.bodea-theme header .nav-hamburger button {
+  color: #2C2C2C;
+  width: 36px;
+  height: 36px;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="%232C2C2C"><rect fill-rule="evenodd" height="4" rx="1" ry="1" width="28" x="4" y="16"/><rect fill-rule="evenodd" height="4" rx="1" ry="1" width="28" x="4" y="6"/><rect fill-rule="evenodd" height="4" rx="1" ry="1" width="28" x="4" y="26"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+}
+
+.bodea-theme header .nav-hamburger-icon,
+.bodea-theme header .nav-hamburger-icon::before,
+.bodea-theme header .nav-hamburger-icon::after {
+  content: unset;
+  display: none;
+}
+
+
+/* ==========================================================================
+   Profile Avatar / Sign-In Button Styles[cite: 1]
+   ========================================================================== */
+.bodea-theme header nav .nav-tools .sign-in-btn::after {
+  content: none !important;
+}
+
+/* Mobile View Adjustments (max-width: 768px)[cite: 1] */
+@media screen and (max-width: 768px) {
+  body.bodea-theme header .nav-brand a img {
+    margin-bottom: 8px;
+  }
+  
+  .bodea-theme header nav .nav-tools .sign-in-btn {
+    display: block !important;
+    width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+    border: 0;
+    padding: 0;
+  }
+
+  .bodea-theme header nav .nav-tools .sign-in-btn::before {
+    content: '';
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-color: var(--nav-text-color);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z'/%3E%3C/svg%3E") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z'/%3E%3C/svg%3E") no-repeat center / contain;
+  }
+}
+
+/* Mobile View Adjustments (width < 900px)[cite: 1] */
+@media (width < 900px) {
+  body.bodea-theme header .nav-wrapper nav {
+    justify-content: space-between;
+    padding-top: 1rem;
+    height: unset;
+  }
+
+  .bodea-theme header nav .nav-tools {
+    margin-left: unset;
+  }
+
+  .bodea-theme header nav .nav-tools .sign-in-btn {
+    display: block !important;
+  }
+
+  /* Expanded Navigation Section Styles[cite: 1] */
+  .bodea-theme header nav[aria-expanded='true'] .nav-tools .sign-in-btn, 
+  .bodea-theme header nav[aria-expanded='true'] .nav-tools a[href*="sign"] {
+    font-size: 0 !important;
+    min-height: unset !important;
+    padding: unset !important;
+    text-align: unset !important;
+  }
+
+  .bodea-theme header nav[aria-expanded='true']::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 111111;
+    background-color: var(--dark-color-opacity);
+  }
+
+  .bodea-theme header nav[aria-expanded='true'] .nav-sections {
+    background-color: #fff;
+    padding: 1rem;
+    top: 48px;
+  }
+
+  body.bodea-theme header .nav-sections ul li {
+    margin: 4px 0;
+  }
+
+  body.bodea-theme header .nav-sections ul li a {
+    font-family: 'Adobe Clean', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .bodea-theme header nav[aria-expanded='true'] .nav-tools {
+    position: static;
+    width: unset;
+    background-color: unset;
+    padding: 0;
+  }
+
+  .bodea-theme header nav[aria-expanded='true'] .nav-tools .lang-switcher {
+    display: none !important;
+  }
+}
