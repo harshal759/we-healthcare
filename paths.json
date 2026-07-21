@@ -1,0 +1,15 @@
+{
+  "mappings": [
+    "/content/expnews/language-masters/en:/",
+    "/content/expnews/language-masters/en/:/en/",
+    "/content/expnews/configuration:/.helix/config.json",
+    "/content/expnews/metadata:/metadata.json",
+    "/content/expnews/redirects:/redirects.json",
+    "/content/expnews/graphql:/graphql.json",
+    "/content/expnews/placeholders:/placeholders.json"
+  ],
+  "includes": [
+    "/content/expnews/",
+    "/content/dam/expnews/"
+  ]
+}
