@@ -19,14 +19,6 @@ body.wehealthcare-theme footer {
   margin-top: auto;
 }
 
-/* Header nav */
-.wehealthcare-theme header nav[aria-expanded='true'] {
-  min-height: 0;
-  overflow: visible;
-  padding: 0;
-  height: auto;
-}
-
 .wehealthcare-theme .section.nav-sections {
   padding: 22px 32px;
 }
@@ -37,11 +29,12 @@ body.wehealthcare-theme footer {
 
 .wehealthcare-theme header nav .nav-brand img {
   width: auto;
-  height: 36.5px;
+  height: 35px;
 }
 
 .wehealthcare-theme header nav .nav-brand picture {
-  width: 133.5px;
+  width: auto;
+  aspect-ratio: unset;
 }
 
 body.wehealthcare-theme header .nav-wrapper {
