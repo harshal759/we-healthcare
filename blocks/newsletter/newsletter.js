@@ -95,7 +95,7 @@ export default function decorate(block) {
 
   if (imageRef && useImgAsBg) {
     block.classList.add('newsletter-has-bg-image');
-    block.style.backgroundImage = `url('${imageRef}')`;
+    block.style.backgroundImage = `url('${imageRef?.substring(0, imageRef?.indexOf('?'))}')`;
   }
 
   // ── Wrapper ────────────────────────────────────────────────────────────────
