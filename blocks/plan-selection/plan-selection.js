@@ -165,7 +165,7 @@ function buildMedicarePlanDef(config = {}) {
 }
 
 // ============================================================
-//  WIZARD STEP INDICATOR
+//  WIZARD NAVIGATION & STEP INDICATOR
 // ============================================================
 function setupWizardStepIndicator(block) {
   const wizard = block.querySelector('form .wizard');
@@ -175,6 +175,7 @@ function setupWizardStepIndicator(block) {
   const btnWrapper = wizard.querySelector('.wizard-button-wrapper');
   if (!btnWrapper || totalSteps === 0) return;
 
+  // Create progress indicator
   const progressWrapper = document.createElement('div');
   progressWrapper.className = 'wizard-progress-wrapper';
   
@@ -189,23 +190,34 @@ function setupWizardStepIndicator(block) {
 
   progressWrapper.appendChild(dotsContainer);
 
-  const updateDots = () => {
+  // Grab the back button to manage its disabled state
+  const prevBtn = btnWrapper.querySelector('.wizard-button-prev button');
+
+  const updateWizardUI = () => {
     const current = wizard.querySelector('.current-wizard-step');
     const idx = current ? parseInt(current.dataset.index, 10) : 0;
+    
+    // 1. Update Dots
     dotsContainer.querySelectorAll('.wizard-dot').forEach((dot, i) => {
       dot.classList.toggle('active', i <= idx);
     });
+
+    // 2. Disable Back button on the first step
+    if (prevBtn) {
+      prevBtn.disabled = idx === 0;
+    }
   };
 
-  updateDots();
-  wizard.addEventListener('wizard:navigate', updateDots);
+  updateWizardUI();
+  wizard.addEventListener('wizard:navigate', updateWizardUI);
 
-  // Position the progress indicator logically inside the button wrapper
-  const nextBtn = btnWrapper.querySelector('.wizard-button-next, [id*="wizard-button-next"]');
-  if (nextBtn) btnWrapper.insertBefore(progressWrapper, nextBtn);
-  else btnWrapper.appendChild(progressWrapper);
+  // Append progress dots to the main header, NOT the buttons wrapper
+  const headerDiv = block.querySelector('.plan-selection-header');
+  if (headerDiv) {
+    headerDiv.appendChild(progressWrapper);
+  }
 
-  // Move the submit button into the button wrapper logic if necessary
+  // Position Submit button cleanly inside the bottom wrapper
   const submitWrapper = wizard.querySelector('.submit-wrapper');
   if (submitWrapper) btnWrapper.appendChild(submitWrapper);
 }
@@ -223,7 +235,6 @@ function attachSubmitHandler(block, config) {
     e.preventDefault();
     const formData = {};
     
-    // Collect data mapping correctly based on input type
     form.querySelectorAll('input, select, textarea').forEach((el) => {
       const name = el.getAttribute('name');
       if (name) {
@@ -234,7 +245,6 @@ function attachSubmitHandler(block, config) {
     });
 
     try {
-      // Store result logic - customizable per project needs
       localStorage.setItem("project_plan_selection", JSON.stringify(formData));
 
       const submitBtn = form.querySelector("button[type='submit']");
@@ -243,7 +253,6 @@ function attachSubmitHandler(block, config) {
         submitBtn.disabled = true;
       }
 
-      // Redirect logic
       const redirectTo = normalizeAemPath(redirectUrl);
       if (redirectTo) {
         setTimeout(() => { window.location.href = redirectTo; }, 1000);
@@ -267,11 +276,9 @@ export default async function decorate(block) {
   const config = readBlockConfig(block) || {};
   const variant = normalizeVariant(config.variant);
 
-  // Hide authored rows
   [...block.children].forEach((row) => { row.style.display = 'none'; });
 
-  // Generate Heading
-  const headingText = config.formHeading || config.formheading || "Which type of health insurance should I get?";
+  const headingText = config.formHeading || config.formheading || "Which type of Medicare plan should I get?";
   const subtitleText = config.formSubtitle || config.formsubtitle || "Take our free, short quiz to learn which type of health insurance might be best for you!";
   
   const headerDiv = document.createElement('div');
@@ -281,22 +288,20 @@ export default async function decorate(block) {
     <p>${subtitleText}</p>
   `;
 
-  // Build the Form definition based on variant
-  const formDef = variant === 'medicare-plan' ? buildMedicarePlanDef(config) : buildInsurancePlanDef(config);
+  const formDef = variant === 'insurance-plan' ? buildInsurancePlanDef(config) : buildMedicarePlanDef(config);
   
   const formContainer = document.createElement('div');
   formContainer.className = 'form-container';
 
-  // Output JSON payload to trigger the form module logic
   const pre = document.createElement('pre');
   const code = document.createElement('code');
   code.textContent = JSON.stringify(formDef);
   pre.append(code);
   formContainer.append(pre);
   
+  // Entirely replace the authored rows with our custom header and the form
   block.replaceChildren(headerDiv, formContainer);
 
-  // Import headless AEM form module to construct the DOM
   const formModule = await import('../form/form.js');
   await formModule.default(formContainer);
 

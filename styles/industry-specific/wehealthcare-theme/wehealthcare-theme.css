@@ -39,6 +39,7 @@ body.wehealthcare-theme footer {
 
 body.wehealthcare-theme header .nav-wrapper {
   background-color: #fff;
+  position: static;
 }
 
 body.wehealthcare-theme header nav .nav-sections ul > li > a {

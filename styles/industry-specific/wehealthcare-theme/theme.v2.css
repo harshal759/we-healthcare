@@ -1,6 +1,15 @@
+body.wehealthcare-theme header {
+  position: static;
+  min-height: 72px;
+  height: 100%;
+}
 body.wehealthcare-theme header nav {
   gap: 1rem;
   max-width: 1200px;
+  padding: 0;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: unset;
 }
 @media screen and (max-width: 768px) {
   body.wehealthcare-theme header nav {
@@ -300,9 +309,6 @@ body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-form .ne
   width: -moz-fit-content;
   width: fit-content;
 }
-body.wehealthcare-theme .section.whc-colcards {
-  background-color: #f5f5f5;
-}
 body.wehealthcare-theme .section.whc-colcards .hero-wrapper {
   max-width: 1200px;
 }
@@ -341,10 +347,26 @@ body.wehealthcare-theme .section.whc-colcards .hero-wrapper .hero > div:nth-chil
   margin: 0;
 }
 body.wehealthcare-theme .section.whc-colcards .hero-wrapper .hero > div:nth-child(2) .button-container.cta-button a.button {
+  display: block;
+  color: #0065d6 !important;
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-align: center;
+  padding: 0 !important;
+  background-color: unset !important;
+  border: none !important;
+  box-shadow: unset !important;
+  margin: 0 auto;
+}
+body.wehealthcare-theme .section.whc-colcards .hero-wrapper .hero > div:nth-child(2) .button-container.cta-button a.button::after {
+  content: unset;
+}
+body.wehealthcare-theme .section.whc-colcards.bg-light .hero-wrapper .hero > div:nth-child(2) .button-container.cta-button a.button {
   border: 1px solid #0065d6 !important;
   background-color: #0065d6 !important;
-  padding: 4px 14px 5px !important;
-  margin: 0;
+  padding: 3px 14px 5px !important;
   border-radius: 20px;
   color: #fff !important;
   letter-spacing: 0px;
@@ -355,8 +377,9 @@ body.wehealthcare-theme .section.whc-colcards .hero-wrapper .hero > div:nth-chil
   width: fit-content;
   font-size: 14px;
   line-height: 1.5;
+  text-decoration: unset;
 }
-body.wehealthcare-theme .section.whc-colcards .hero-wrapper .hero > div:nth-child(2) .button-container.cta-button a.button::after {
+body.wehealthcare-theme .section.whc-colcards.bg-light .hero-wrapper .hero > div:nth-child(2) .button-container.cta-button a.button::after {
   content: unset;
 }
 body.wehealthcare-theme .section.whc-row-cards .cards-wrapper {
