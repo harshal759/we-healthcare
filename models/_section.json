@@ -226,7 +226,8 @@
         "embed-adaptive-form",
         "bodea-secure-antivirus",
         "rss-list",
-        "rss-details"
+        "rss-details",
+        "plan-selection"
       ]
     }
   ]
