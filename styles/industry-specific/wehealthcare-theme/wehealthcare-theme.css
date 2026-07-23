@@ -71,3 +71,292 @@ body.wehealthcare-theme a.sign-in-btn {
     color: #000;
   }
 }
+/* banner */
+body.wehealthcare-theme main .section.whc-banner {
+  margin-bottom: 0;
+  height: 380px;
+  max-width: unset;
+}
+body.wehealthcare-theme main .section.whc-banner .hero-wrapper {
+  height: 380px;
+}
+body.wehealthcare-theme main .section.whc-banner .hero {
+  height: 100%;
+}
+body.wehealthcare-theme main .section.whc-banner .hero > div,
+body.wehealthcare-theme main .section.whc-banner .hero picture,
+body.wehealthcare-theme main .section.whc-banner .hero img {
+  height: 100%;
+  filter: unset;
+}
+body.wehealthcare-theme main .section.whc-banner .hero img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+body.wehealthcare-theme main .section.whc-banner .hero > div:nth-child(2){
+  width:1200px;
+  padding: 32px 0 32px 0;
+}
+body.wehealthcare-theme main .section.whc-banner .hero strong {
+  font-size: 48px;
+  font-weight: 400;
+}
+body.wehealthcare-theme main .section.whc-banner .hero h1 {
+  line-height: 1.5;
+  font-size: 48px;
+  margin: -0.5rem 0 1rem;
+  font-weight: 900;
+}
+body.wehealthcare-theme main .section.whc-banner .hero p.button-container .button{
+  margin:0;
+}
+body.wehealthcare-theme main .section.whc-banner .hero p.button-container a.button{
+      border: unset !important;
+    background-color: #0065d6 !important;
+    padding: 1px 6px !important;
+        font-size: 13.33px;
+        line-height:1.5;
+}
+body.wehealthcare-theme main .section.whc-banner .hero p.button-container .button:after{
+      display:none;
+}
+
+/* plans */
+body.wehealthcare-theme main .section.whc-plans{
+  padding-top: 32px;
+}
+body.wehealthcare-theme main .section.whc-plans .default-content-wrapper,
+body.wehealthcare-theme main .section.whc-support .default-content-wrapper{
+  text-align: center;
+  overflow: hidden; 
+}
+body.wehealthcare-theme main .section.whc-plans .default-content-wrapper h1,
+body.wehealthcare-theme main .section.whc-support .default-content-wrapper h1,
+body.wehealthcare-theme main .section.whcare-textbx .default-content-wrapper h1{
+  font-size: 36px;
+    font-weight: 900;
+    margin:24.12px 0px;
+    padding:0px;
+    line-height: 1.5;
+}
+body.wehealthcare-theme main .section.whc-plans .default-content-wrapper p,
+body.wehealthcare-theme main .section.whcare-textbx .default-content-wrapper p{
+  font-size: 14px;
+    margin:14px 0px;
+    padding:0px;
+    line-height: 1.5;
+}
+/* cards plan */
+/* Layout & Container Reset */
+body.wehealthcare-theme main .section.whc-plans .cards-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Card List Grid Styling */
+body.wehealthcare-theme main .section.whc-plans .cards.block > ul {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Individual Card Styling */
+body.wehealthcare-theme main .section.whc-plans .cards.block > ul > li {
+  flex: 1 1 50%;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background:none;
+}
+
+body.wehealthcare-theme main .section.whc-plans .cards > ul > li.image-top {
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+
+/* Rounded Image Wrapper & Responsive Images */
+body.wehealthcare-theme main .section.whc-plans .cards-card-image {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+body.wehealthcare-theme main .section.whc-plans .cards-card-image picture,
+body.wehealthcare-theme main .section.whc-plans .cards-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Card Content Typography */
+body.wehealthcare-theme main .section.whc-plans .cards-card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+body.wehealthcare-theme main .section.whc-plans .cards-card-body h2 {
+  font-size: 21px;
+  font-weight: 700;
+  color: #28272b;
+  margin: 0.83em 0;
+  padding:0;
+  line-height: 1.5;
+}
+
+body.wehealthcare-theme main .section.whc-plans .cards-card-body p {
+  font-size: 14px;
+  margin: 0;
+  color: #28272b;
+  margin:0px 0px 14px;
+  line-height: 1.5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  body.wehealthcare-theme main .section.whc-plans .cards.block > ul {
+    flex-direction: column;
+  }
+
+  body.wehealthcare-theme main .section.whc-plans .cards.block > ul > li {
+    max-width: 100%;
+  }
+
+  body.wehealthcare-theme main .section.whc-plans .cards-card-image img {
+    height: 200px;
+  }
+}
+/* support */
+body.wehealthcare-theme main .section.whc-support{
+  margin:0 auto 3rem;
+}
+body.wehealthcare-theme main .section.whc-support,body.wehealthcare-theme main .section.whc-support .columns-wrapper{
+  padding:0;
+}
+body.wehealthcare-theme main .section.whc-support .columns-row{
+  align-items:start;
+}
+body.wehealthcare-theme main .section.whc-support .columns-item-vertical{
+  flex:1 1 33.3%;
+  gap: 0;
+}
+body.wehealthcare-theme main .section.whc-support .columns-item-vertical p {
+  font-size: 14px;
+  margin:0; 
+  line-height: 1.5;
+}
+body.wehealthcare-theme main .section.whc-support .columns-item-vertical p:last-child {
+  /* font-size: 14px; */
+  margin:14px 0; 
+}
+
+/* colcard */
+body.wehealthcare-theme main .section.whc-colcards .hero-wrapper{
+  margin:auto;
+}
+@media (min-width: 1200px) {
+    body.wehealthcare-theme main .section.whc-colcards .hero-wrapper{
+        max-width: 1200px;
+        
+    }
+}
+body.wehealthcare-theme main .section.whc-colcards .hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: none;
+}
+
+body.wehealthcare-theme main .section.whc-colcards .hero > div {
+  flex: 1 1 50%;
+}
+body.wehealthcare-theme main .section.whc-colcards .hero > div:nth-child(2) {
+ padding: 1rem 6rem;
+}
+body.wehealthcare-theme main .section.whc-colcards .hero > div:nth-child(2) >div{
+  padding:1rem;
+}
+/* colcrds */
+body.wehealthcare-theme main .section.whc-colcards .hero-wrapper h2{
+  font-size: 36px;
+    font-weight: 900;
+    padding:0 0.83em;
+    margin:0px;
+    line-height: 1.5;
+}
+body.wehealthcare-theme main .section.whc-colcards .hero-wrapper p
+{
+    margin:18px 0;
+    line-height: 1.5;
+}
+body.wehealthcare-theme main .section.whc-colcards .hero .button, 
+body.wehealthcare-theme main .section.whcare-textbx .button{  
+  display: inline-block;
+  background-color: #0065d6 !important;
+  border:2px solid #0065d6 !important;
+  padding: 3px 14px 5px !important;
+  border-radius: 20px;
+  font-size: 14px;
+  color:#fff;
+  text-decoration: none;
+}
+body.wehealthcare-theme main .section.whc-colcards .hero .button::after,
+body.wehealthcare-theme main .section.whcare-textbx .button::after{
+display:none;
+}
+body.wehealthcare-theme main .section.whcare-textbx .default-content-wrapper p:first-of-type{
+margin: 14px auto;
+    max-width: 600px;
+}
+body.wehealthcare-theme main .section.rounded-img{
+  margin-top: 5rem;
+  margin-bottom: 4rem;
+}
+body.wehealthcare-theme main .section.rounded-img .hero img {
+  border-radius: 20px;
+}
+@media (max-width: 768px) {
+  body.wehealthcare-theme main .section.whc-banner .hero > div:last-child {
+    padding: 0.5rem;
+  }
+  body.wehealthcare-theme main .section.whc-banner .hero h1,
+  body.wehealthcare-theme main .section.whc-banner .hero strong,
+  body.wehealthcare-theme main .section.whc-plans .default-content-wrapper h1,
+body.wehealthcare-theme main .section.whc-support .default-content-wrapper h1,
+body.wehealthcare-theme main .section.whcare-textbx .default-content-wrapper h1{
+font-size: 26px;
+  }
+  body.wehealthcare-theme main .section.whc-plans .default-content-wrapper h1,
+  body.wehealthcare-theme main .section.whc-plans .default-content-wrapper p
+  {
+    text-align: left;
+  }
+  body.wehealthcare-theme main .section.whc-plans {
+    padding: 32px 16px;
+}
+body.wehealthcare-theme main .section.whc-plans .default-content-wrapper{
+  padding:0;
+}
+    body.wehealthcare-theme main .section.whc-plans .cards.block > ul > li{
+      margin:0;
+    }
+    
+element.style {
+    padding: 0 16px;
+    /* margin: 0 auto 3rem; */
+}
+body.wehealthcare-theme main .section.whc-support {
+    padding: 0 16px;
+}
+}
