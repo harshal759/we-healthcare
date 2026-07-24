@@ -82,6 +82,14 @@ export default async function decorate(block) {
         label: { value: formTitle },
         appliedCssClassNames: 'col-12',
       },
+      ...(formDesc ? [
+        {
+          id: 'description-join-us',
+          fieldType: 'heading',
+          label: { value: formDesc },
+          appliedCssClassNames: 'col-12 form-description',
+        }
+      ] : []),
       {
         id: 'description-join-us',
         fieldType: 'heading',
