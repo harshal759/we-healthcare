@@ -89,6 +89,9 @@ body.wehealthcare-theme main .section.whc-banner .hero img {
   object-position: center;
 }
 body.wehealthcare-theme main .section.whc-banner .hero > div:nth-child(2){
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width:1200px;
   padding: 32px 0 32px 0;
 }
@@ -106,11 +109,12 @@ body.wehealthcare-theme main .section.whc-banner .hero p.button-container .butto
   margin:0;
 }
 body.wehealthcare-theme main .section.whc-banner .hero p.button-container a.button{
-      border: unset !important;
-    background-color: #0065d6 !important;
-    padding: 1px 6px !important;
-        font-size: 13.33px;
-        line-height:1.5;
+  border: unset !important;
+  background-color: #0065d6 !important;
+  padding: 4px 14px !important;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 50px;
 }
 body.wehealthcare-theme main .section.whc-banner .hero p.button-container .button:after{
       display:none;
@@ -240,6 +244,7 @@ body.wehealthcare-theme main .section.whc-support,body.wehealthcare-theme main .
 }
 body.wehealthcare-theme main .section.whc-support .columns-row{
   align-items:start;
+  gap: 2rem;
 }
 body.wehealthcare-theme main .section.whc-support .columns-item-vertical{
   flex:1 1 33.3%;
