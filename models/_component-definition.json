@@ -1168,6 +1168,22 @@
               }
             }
           }
+        },
+        {
+          "title": "Plan Application",
+          "id": "plan-application",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Plan Application",
+                  "model": "plan-application",
+                  "key-value": true
+                }
+              }
+            }
+          }
         }
       ]
     },

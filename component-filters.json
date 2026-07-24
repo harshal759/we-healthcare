@@ -67,7 +67,8 @@
       "bodea-secure-antivirus",
       "rss-list",
       "rss-details",
-      "plan-selection"
+      "plan-selection",
+      "plan-application"
     ]
   },
   {
@@ -151,6 +152,10 @@
   },
   {
     "id": "plan-selection",
+    "components": []
+  },
+  {
+    "id": "plan-application",
     "components": []
   }
 ]
