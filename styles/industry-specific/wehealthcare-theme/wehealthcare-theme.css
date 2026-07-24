@@ -423,6 +423,9 @@ body.wehealthcare-theme main .section.mxwidth-900  .columns-row .columns-item-ve
 body.wehealthcare-theme main .section.mxwidth-900  .columns-row .columns-item-vertical p{
   font-size: 14px;
 }
+body.wehealthcare-theme .whbreadcrumb.margin-0{
+  margin:0;
+}
 body.wehealthcare-theme .whbreadcrumb .default-content-wrapper {
     display: flex;
     align-items: center;
