@@ -4,9 +4,8 @@
 
 .plan-application {
   width: 100%;
-  max-width: 1000px;
+  max-width: 500px;
   margin: 0 auto;
-  padding: 40px 20px;
 }
 
 /* --- Progress Dots (Step Indicator) --- */
@@ -14,8 +13,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4rem auto 2rem;
-  flex-direction: column;
+  margin: 0 auto;
+  padding-top: 4rem;
+  gap: 1rem;
 }
 
 .plan-application .Progress__dots {
@@ -39,7 +39,6 @@
 }
 
 .plan-application .Progress__label {
-  margin-top: 1rem;
   font-size: 14px;
   color: #464646;
 }
@@ -49,6 +48,7 @@
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  padding-bottom: 5rem;
 }
 
 .plan-application .plan-application-form {
@@ -88,35 +88,44 @@
 /* --- Typography & Headings --- */
 .plan-application .wizard-step-title h2,
 .plan-application .wizard-step-title h1 {
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 700;
   color: #28272b;
-  margin: 0 0 24px;
+  margin: 0.83em 0;
   text-align: center;
+  padding: 0;
 }
 
 .plan-application .wizard-step-subtitle h3,
 .plan-application .wizard-step-subtitle h2 {
-  font-size: 18px;
+  font-size: 16.38px;
   font-weight: 700;
   color: #28272b;
-  margin: 16px 0 24px;
+  margin: 1em 0;
   text-align: left;
+  padding: 0;
 }
 
 /* --- Form Inputs --- */
 .plan-application .field-wrapper {
-  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 
-.plan-application label {
-  font-size: 14px;
+.plan-application .field-wrapper.text-wrapper, .plan-application .field-wrapper.drop-down-wrapper {
+  margin-bottom: 2rem;
+}
+
+.plan-application label, .plan-application .field-label {
+  font-size: 12px;
   font-weight: 400;
   color: #28272b;
-  margin-bottom: 6px;
   display: inline-block;
+  padding: 4px 0 5px;
+  line-height: 1.3;
 }
 
 /* Required Asterisk */
@@ -129,10 +138,11 @@
 .plan-application input[type="text"],
 .plan-application select {
   width: 100%;
-  padding: 10px 14px;
+  padding: 3px 12px 5px 11px;
+  height: 32px;
   border: 1px solid #909090;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 12px;
   color: #222;
   box-sizing: border-box;
   background: #fff;
@@ -155,6 +165,13 @@
   gap: 16px;
 }
 
+.plan-application .radio-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  height: 32px;
+}
+
 .plan-application .radio-group-field fieldset > label,
 .plan-application .radio-group-field fieldset > div {
   display: flex;
@@ -164,9 +181,9 @@
 }
 
 .plan-application .radio-group-field input[type="radio"] {
-  width: 16px;
-  height: 16px;
-  accent-color: #0065d6;
+  width: 14px;
+  height: 14px;
+  accent-color: #464646;
   cursor: pointer;
   margin: 0;
 }
@@ -174,8 +191,9 @@
 .plan-application .radio-group-field span,
 .plan-application .radio-group-field label {
   font-size: 14px;
-  color: #28272b;
+  color: #222;
   margin: 0;
+  padding: 0;
 }
 
 /* --- Wizard Navigation & Buttons --- */
@@ -185,18 +203,17 @@
   align-items: center;
   gap: 16px;
   width: 100%;
-  margin-top: 32px;
   grid-column: span 12;
 }
 
 .plan-application button {
-  padding: 12px 32px;
+  padding: 6px 14px;
   font-size: 14px;
   font-weight: 700;
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s ease;
-  min-width: 100px;
+  min-width: 72px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -217,6 +234,7 @@
 
 /* Back Button */
 .plan-application .wizard-button-prev button {
+  display: none;
   background-color: transparent;
   color: #464646;
   border: 1px solid #d5d5d5;
@@ -252,17 +270,21 @@
   max-width: 450px;
   margin: 0 auto;
   text-align: center;
+  padding: 3rem 0 5rem;
 }
 
 .plan-application .success-container h1 {
   font-size: 36px;
   font-weight: 900;
+  font-family: 'Adobe Clean Black', sans-serif;
   color: #28272b;
-  margin-bottom: 24px;
+  text-align: left;
+  margin: 0.67em 0;
+  padding: 0;
 }
 
 .plan-application .success-container p {
-  font-size: 16px;
+  font-size: 14px;
   color: #28272b;
   line-height: 1.5;
   margin: 0;
@@ -275,17 +297,40 @@
 }
 
 /* --- Mobile Responsiveness --- */
+/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-  .plan-application .plan-application-form.is-wizard .wizard > .panel-wrapper {
-    gap: 16px;
-  }
-  
-  .plan-application .plan-application-form.is-wizard .col-6 {
-    grid-column: span 12 !important; /* Stack inputs vertically on mobile */
+  .plan-application .plan-application-form.is-wizard .wizard > .panel-wrapper.current-wizard-step {
+    display: flex !important;
   }
 
-  .plan-application .wizard-button-wrapper {
-    justify-content: space-between;
+  .plan-application .plan-application-form.is-wizard .wizard > .panel-wrapper {
+    gap: 0;
+    flex-direction: column;
+  }
+  
+  .plan-application .plan-application-form.is-wizard .col-6,
+  .plan-application .plan-application-form.is-wizard .col-12 {
+    grid-column: span 12 !important; 
+    width: 100%;
+  }
+
+  /* Explicit Mobile Ordering */
+  .plan-application .mo-1 { order: 1; }
+  .plan-application .mo-2 { order: 2; }
+  .plan-application .mo-3 { order: 3; }
+  .plan-application .mo-4 { order: 4; }
+  .plan-application .mo-5 { order: 5; }
+  
+  .plan-application .mo-6 { 
+    order: 6; 
+  }
+  
+  .plan-application .mo-7 { order: 7; }
+  .plan-application .mo-8 { order: 8; }
+  .plan-application .mo-9 { order: 9; }
+
+  .plan-application .wizard-button-wrapper .submit-wrapper {
+    width: fit-content !important;
   }
 
   .plan-application button {

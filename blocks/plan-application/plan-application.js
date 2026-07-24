@@ -11,26 +11,26 @@ function buildPlanApplicationDef(planName) {
     name: 'step1',
     fieldType: 'panel',
     items: [
-      { id: 'step-1-title', fieldType: 'heading', label: { value: applicationTitle }, appliedCssClassNames: 'wizard-step-title col-12' },
-      { id: 'step-1-subtitle', fieldType: 'heading', label: { value: 'Personal Details' }, appliedCssClassNames: 'wizard-step-subtitle col-12' },
+      { id: 'step-1-title', fieldType: 'heading', label: { value: applicationTitle }, appliedCssClassNames: 'wizard-step-title col-12 mo-1' },
+      { id: 'step-1-subtitle', fieldType: 'heading', label: { value: 'Personal Details' }, appliedCssClassNames: 'wizard-step-subtitle col-12 mo-2' },
       
       // Column 1 (Left)
-      { id: 'firstName', name: 'firstName', fieldType: 'text-input', label: { value: 'First name' }, placeholder: 'First Name', required: true, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'firstName', name: 'firstName', fieldType: 'text-input', label: { value: 'First name' }, placeholder: 'First Name', properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-3' },
       // Column 2 (Right)
-      { id: 'birthDate', name: 'birthDate', fieldType: 'text-input', label: { value: 'Date of birth' }, placeholder: 'YYYY-MM-DD', required: true, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'birthDate', name: 'birthDate', fieldType: 'text-input', label: { value: 'Date of birth' }, placeholder: 'YYYY-MM-DD', properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-5' },
       
       // Column 1 (Left)
-      { id: 'lastName', name: 'lastName', fieldType: 'text-input', label: { value: 'Last name' }, placeholder: 'Last Name', required: true, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'lastName', name: 'lastName', fieldType: 'text-input', label: { value: 'Last name' }, placeholder: 'Last Name', properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-4' },
       // Column 2 (Right)
-      { id: 'gender', name: 'gender', fieldType: 'drop-down', label: { value: 'Gender' }, enum: ['female', 'male', 'not_specified', 'non_specific'], enumNames: ['Female', 'Male', 'Not Specified', 'Non-specific'], required: true, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'gender', name: 'gender', fieldType: 'drop-down', label: { value: 'Gender' }, enum: ['female', 'male', 'not_specified', 'non_specific'], enumNames: ['Female', 'Male', 'Not Specified', 'Non-specific'], properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-6' },
       
       // Column 1 (Left)
-      { id: 'email', name: 'email', fieldType: 'text-input', label: { value: 'Email' }, required: true, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'email', name: 'email', fieldType: 'text-input', label: { value: 'Email' }, properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-7' },
       // Column 2 (Right)
-      { id: 'phoneNumber', name: 'phoneNumber', fieldType: 'text-input', label: { value: 'Mobile phone number' }, required: true, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'phoneNumber', name: 'phoneNumber', fieldType: 'text-input', label: { value: 'Mobile phone number' }, properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-8' },
       
       // Column 1 (Left)
-      { id: 'jointApplicant', name: 'jointApplicant', fieldType: 'radio-group', label: { value: 'Is there a joint applicant?' }, enum: ['yes', 'no'], enumNames: ['Yes', 'No'], properties: { alignment: 'vertical', colspan: 6 }, appliedCssClassNames: 'col-6 radio-group-field' }
+      { id: 'jointApplicant', name: 'jointApplicant', fieldType: 'radio-group', label: { value: 'Is there a joint applicant?' }, enum: ['yes', 'no'], enumNames: ['Yes', 'No'], properties: { alignment: 'vertical', colspan: 6 }, appliedCssClassNames: 'col-6 radio-group-field mo-9' }
     ],
   };
 
@@ -39,27 +39,27 @@ function buildPlanApplicationDef(planName) {
     name: 'step2',
     fieldType: 'panel',
     items: [
-      { id: 'step-2-title', fieldType: 'heading', label: { value: applicationTitle }, appliedCssClassNames: 'wizard-step-title col-12' },
+      { id: 'step-2-title', fieldType: 'heading', label: { value: applicationTitle }, appliedCssClassNames: 'wizard-step-title col-12 mo-1' },
       
       // Subtitles mapped to 2-column grid
-      { id: 'address-heading', fieldType: 'heading', label: { value: 'Address' }, appliedCssClassNames: 'wizard-step-subtitle col-6' },
-      { id: 'identity-heading', fieldType: 'heading', label: { value: 'Identity' }, appliedCssClassNames: 'wizard-step-subtitle col-6' },
+      { id: 'address-heading', fieldType: 'heading', label: { value: 'Address' }, appliedCssClassNames: 'wizard-step-subtitle col-6 mo-2' },
+      { id: 'identity-heading', fieldType: 'heading', label: { value: 'Identity' }, appliedCssClassNames: 'wizard-step-subtitle col-6 mo-6' },
 
       // Column 1 (Left - Address)
-      { id: 'address', name: 'address', fieldType: 'text-input', label: { value: 'Street Address' }, placeholder: 'Street and number', required: true, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'address', name: 'address', fieldType: 'text-input', label: { value: 'Street Address' }, placeholder: 'Street and number', properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-3' },
       // Column 2 (Right - Identity)
-      { id: 'ssn', name: 'ssn', fieldType: 'text-input', label: { value: 'Social Security Number' }, required: true, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'ssn', name: 'ssn', fieldType: 'text-input', label: { value: 'Social Security Number' }, properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-7' },
 
       // Column 1 (Left - Address)
-      { id: 'zipCode', name: 'zipCode', fieldType: 'text-input', label: { value: 'Zip code' }, required: true, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'zipCode', name: 'zipCode', fieldType: 'text-input', label: { value: 'Zip code' }, properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-4' },
       // Column 2 (Right - Identity)
-      { id: 'patientNumber', name: 'patientNumber', fieldType: 'text-input', label: { value: 'Patient number' }, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'patientNumber', name: 'patientNumber', fieldType: 'text-input', label: { value: 'Patient number' }, properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-8' },
 
       // Column 1 (Left - Address)
-      { id: 'state', name: 'state', fieldType: 'text-input', label: { value: 'State' }, required: true, properties: { colspan: 6 }, appliedCssClassNames: 'col-6' },
+      { id: 'state', name: 'state', fieldType: 'text-input', label: { value: 'State' }, properties: { colspan: 6 }, appliedCssClassNames: 'col-6 mo-5' },
 
       // Submit Button
-      { id: 'submit-btn', name: 'submitButton', fieldType: 'button', buttonType: 'submit', label: { value: 'Next' }, appliedCssClassNames: 'submit-wrapper col-12' }
+      { id: 'submit-btn', name: 'submitButton', fieldType: 'button', buttonType: 'submit', label: { value: 'Next' }, appliedCssClassNames: 'submit-wrapper col-12 mo-9' }
     ],
   };
 
