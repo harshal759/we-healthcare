@@ -434,4 +434,99 @@ body.wehealthcare-theme .section.whc-row-cards .cards ul > li .cards-card-body .
 }
 body.wehealthcare-theme .section.whc-row-cards .cards ul > li .cards-card-body .button-container a.button::after {
   content: unset;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+}
+@media screen and (max-width: 768px) {
+  body.wehealthcare-theme .section.medicare-webinar-signup {
+    flex-direction: column;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+body.wehealthcare-theme .section.medicare-webinar-signup > div {
+  max-width: 584px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .default-content-wrapper p {
+  margin: 0;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .default-content-wrapper picture {
+  margin: 1.5rem auto 0;
+  max-width: 420px;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block .join-us-form {
+  padding: 0;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block h2#heading-join-us {
+  margin: 0.83em 0;
+  font-size: 21px;
+  text-align: left;
+  text-transform: unset;
+  color: #28272b;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block h2#description-join-us {
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  margin: 1em 0;
+  color: #28272b;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block .panel-wrapper {
+  padding-top: 2rem !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 2rem;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block .field-wrapper {
+  margin: 0;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block .field-wrapper.field-zipcode {
+  grid-column: 1/-1;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block label {
+  margin: 0;
+  padding: 4px 0 5px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #28272b;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block input[type=text], body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block input[type=email], body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block input[type=tel] {
+  padding: 3px 12px 5px 11px;
+  height: 32px;
+  border-radius: 4px;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block input[type=text]:focus-visible, body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block input[type=email]:focus-visible, body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block input[type=tel]:focus-visible {
+  border-color: #0065d6;
+  box-shadow: unset;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block .submit-wrapper {
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: left;
+  margin-top: 8px;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block .submit-wrapper .button {
+  background-color: #0065d6;
+  padding: 8px 14px;
+  font-size: 14px;
+  border: 0;
+  text-transform: unset;
+}
+body.wehealthcare-theme .section.medicare-webinar-signup .join-us-wrapper .join-us.block .submit-wrapper .button:hover {
+  color: #fff;
+}
+body.wehealthcare-theme .join-us-success-overlay {
+  display: none !important;
 }/*# sourceMappingURL=theme.v2.css.map */
