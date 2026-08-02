@@ -179,7 +179,11 @@
     "components": []
   },
   {
-    "id": "plan-selection",
+    "id": "insurance-plan-selection",
+    "components": []
+  },
+  {
+    "id": "medicare-plan-selection",
     "components": []
   },
   {
