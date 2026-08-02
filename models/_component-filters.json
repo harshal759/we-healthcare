@@ -63,7 +63,8 @@
       "video",
       "rss-list",
       "rss-details",
-      "plan-selection",
+      "insurance-plan-selection",
+      "medicare-plan-selection",
       "plan-application"
     ]
   },

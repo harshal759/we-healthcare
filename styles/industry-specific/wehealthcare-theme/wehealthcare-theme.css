@@ -681,56 +681,68 @@ body.wehealthcare-theme footer .footer.block > div ul li a::after {
     display: none !important;
   }
 }
-body.wehealthcare-theme .newsletter {
+body.wehealthcare-theme .get-offer-container {
   width: 100%;
-  padding: 4rem 0;
+  padding: 4rem 2rem;
 }
 @media screen and (max-width: 768px) {
-  body.wehealthcare-theme .newsletter.newsletter-has-bg-image {
+  body.wehealthcare-theme .get-offer-container.section-has-bg {
     background-position: left;
   }
+
+  body.wehealthcare-theme .section.get-offer-container > picture.section-bg img.sec-img {
+    object-position: left;
+  }
 }
-body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-content-panel {
-  gap: 0;
+body.wehealthcare-theme .get-offer-container > .default-content-wrapper,
+body.wehealthcare-theme .get-offer-container > .get-offer-wrapper {
   max-width: 1200px;
-  background-color: transparent;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 !important;
+  align-items: flex-start;
+  background-color: transparent;
 }
 @media screen and (max-width: 768px) {
-  body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-content-panel {
+  body.wehealthcare-theme .get-offer-container > .default-content-wrapper,
+  body.wehealthcare-theme .get-offer-container > .get-offer-wrapper {
     padding: 0 32px;
   }
 }
-body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-content-panel .newsletter-content h1, body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-content-panel .newsletter-content h2, body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-content-panel .newsletter-content h3 {
+body.wehealthcare-theme .get-offer-container .default-content-wrapper h1,
+body.wehealthcare-theme .get-offer-container .default-content-wrapper h2,
+body.wehealthcare-theme .get-offer-container .default-content-wrapper h3 {
   font-size: 36px;
   font-weight: 900;
   font-family: "Adobe Clean Black", sans-serif;
   line-height: 1.5;
   padding: 0;
   margin: 0;
+  color: #fff;
 }
-body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-content-panel .newsletter-content p {
+body.wehealthcare-theme .get-offer-container .default-content-wrapper p {
   font-size: 16px;
   line-height: 1.5;
   color: #fff;
   margin: 1rem 0;
 }
-body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-form {
+body.wehealthcare-theme .get-offer-container .get-offer.block .get-offer-wrapper {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
   width: -moz-fit-content;
   width: fit-content;
-}
-body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-form .newsletter-input-wrapper {
-  width: 100%;
   flex-wrap: unset;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: none;
 }
-@media screen and (max-width: 768px) {
-  body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-form .newsletter-input-wrapper {
-    flex-direction: row;
-  }
-}
-body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-form .newsletter-email-input {
+body.wehealthcare-theme .get-offer-container .get-offer-input {
   width: 192px;
+  max-width: 192px;
   flex: unset;
   padding: 3px 12px 5px 11px;
   background-color: rgba(0, 0, 0, 0.1);
@@ -739,16 +751,17 @@ body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-form .ne
   height: 32px;
   border-radius: 4px;
   text-transform: unset;
+  color: #fff;
 }
-body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-form .newsletter-email-input::-moz-placeholder {
+body.wehealthcare-theme .get-offer-container .get-offer-input::-moz-placeholder {
   text-transform: unset;
   color: #fff;
 }
-body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-form .newsletter-email-input::placeholder {
+body.wehealthcare-theme .get-offer-container .get-offer-input::placeholder {
   text-transform: unset;
   color: #fff;
 }
-body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-form .newsletter-submit-button {
+body.wehealthcare-theme .get-offer-container .get-offer-button {
   border: 0;
   background-color: #fff;
   padding: 4px 18px;
@@ -760,9 +773,20 @@ body.wehealthcare-theme .newsletter.newsletter-has-bg-image .newsletter-form .ne
   font-weight: 700;
   width: -moz-fit-content;
   width: fit-content;
+  font-size: 13px;
 }
-body.wehealthcare-theme .section[data-sec-alignment=right] .newsletter.newsletter-has-bg-image .newsletter-content-panel {
+body.wehealthcare-theme .get-offer-container .get-offer-button:hover {
+  background-color: #fff;
+}
+body.wehealthcare-theme .section[data-sec-alignment=right].get-offer-container .default-content-wrapper,
+body.wehealthcare-theme .section[data-sec-alignment=right].get-offer-container .get-offer-wrapper {
   align-items: flex-end;
+  text-align: right;
+}
+body.wehealthcare-theme .section[data-sec-alignment=center].get-offer-container .default-content-wrapper,
+body.wehealthcare-theme .section[data-sec-alignment=center].get-offer-container .get-offer-wrapper {
+  align-items: center;
+  text-align: center;
 }
 body.wehealthcare-theme .section.whc-colcards .hero-wrapper {
   max-width: 1200px;
@@ -841,7 +865,7 @@ body.wehealthcare-theme .section.whc-row-cards .cards-wrapper {
   padding: 0;
 }
 @media screen and (max-width: 768px) {
-  body.wehealthcare-theme .section.whc-row-cards .cards-wrapper {
+  body.wehealthcare-theme .section.whc-row-cards .cards-wrapper, body.wehealthcare-theme .section.whc-colcards .hero-wrapper {
     padding: 0 16px;
   }
 }

@@ -1309,6 +1309,14 @@
       },
       {
         "component": "text",
+        "name": "toast-message",
+        "label": "Success Toast Message",
+        "value": "",
+        "valueType": "string",
+        "description": "If authored, a success toast with this message is shown after the button is clicked."
+      },
+      {
+        "component": "text",
         "name": "custom-class",
         "label": "Custom class",
         "value": "",
@@ -1698,7 +1706,7 @@
       {
         "component": "text",
         "name": "form-desc",
-        "label": "Form Description",
+        "label": "Form Subtitle",
         "valueType": "string"
       },
       {
@@ -9486,25 +9494,8 @@
     ]
   },
   {
-    "id": "plan-selection",
+    "id": "insurance-plan-selection",
     "fields": [
-      {
-        "component": "select",
-        "name": "variant",
-        "label": "Plan Variant",
-        "value": "insurance-plan",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Insurance Plan",
-            "value": "insurance-plan"
-          },
-          {
-            "name": "Medicare Plan",
-            "value": "medicare-plan"
-          }
-        ]
-      },
       {
         "component": "text",
         "name": "formHeading",
@@ -9528,6 +9519,110 @@
       },
       {
         "component": "text",
+        "name": "buttoneventtype",
+        "label": "Button Event Type",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "buttonwebhookurl",
+        "label": "Button Webhook URL",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "buttonformid",
+        "label": "Button Form ID",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "buttondata",
+        "label": "Button Data Sheet",
+        "valueType": "string",
+        "description": "AEM sheet path whose key/value rows are sent on submit"
+      },
+      {
+        "component": "text",
+        "name": "submitbuttontext",
+        "label": "Submit Button Text",
+        "value": "Submit",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "custom-class",
+        "label": "Custom class",
+        "value": "",
+        "valueType": "string",
+        "description": "Space-separated class names to add to the block"
+      }
+    ]
+  },
+  {
+    "id": "medicare-plan-selection",
+    "fields": [
+      {
+        "component": "text",
+        "name": "formHeading",
+        "label": "Main Heading",
+        "value": "Which type of Medicare plan should I get?",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "formSubtitle",
+        "label": "Main Subtitle",
+        "value": "Take our free, short quiz to learn which type of health insurance might be best for you!",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "redirectUrl",
+        "label": "Redirect URL",
+        "description": "Page to redirect to after successful quiz submission."
+      },
+      {
+        "component": "text",
+        "name": "buttoneventtype",
+        "label": "Button Event Type",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "buttonwebhookurl",
+        "label": "Button Webhook URL",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "buttonformid",
+        "label": "Button Form ID",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "buttondata",
+        "label": "Button Data Sheet",
+        "valueType": "string",
+        "description": "AEM sheet path whose key/value rows are sent on submit"
+      },
+      {
+        "component": "text",
+        "name": "submitbuttontext",
+        "label": "Submit Button Text",
+        "value": "Submit",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
         "name": "custom-class",
         "label": "Custom class",
         "value": "",
@@ -9546,6 +9641,41 @@
         "value": "Medicare Extra (HMO) Plan",
         "valueType": "string",
         "description": "Fallback name if no plan URL parameter is provided."
+      },
+      {
+        "component": "text",
+        "name": "buttoneventtype",
+        "label": "Button Event Type",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "buttonwebhookurl",
+        "label": "Button Webhook URL",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "buttonformid",
+        "label": "Button Form ID",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "buttondata",
+        "label": "Button Data Sheet",
+        "valueType": "string",
+        "description": "AEM sheet path whose key/value rows are sent on submit"
+      },
+      {
+        "component": "text",
+        "name": "submitbuttontext",
+        "label": "Submit Button Text",
+        "value": "Submit",
+        "valueType": "string"
       },
       {
         "component": "text",

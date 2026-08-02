@@ -1,4 +1,23 @@
 import { readBlockConfig } from "../../scripts/aem.js";
+import { dispatchCustomEvent } from "../../scripts/custom-events.js";
+import { submitToWebhook, fetchButtonDataSheet } from "../../scripts/form-data-layer.js";
+
+// ============================================================
+//  SUBMIT BUTTON AUTHORING CONFIG
+// ============================================================
+function applyButtonConfigToSubmitButton(block, config) {
+  const submitButton = block.querySelector("form button[type='submit']");
+  if (!submitButton) return;
+  const eventType = config.buttoneventtype;
+  if (eventType && String(eventType).trim()) submitButton.dataset.buttonEventType = String(eventType).trim();
+  const webhookUrl = config.buttonwebhookurl;
+  if (webhookUrl && String(webhookUrl).trim()) submitButton.dataset.buttonWebhookUrl = String(webhookUrl).trim();
+  const formId = config.buttonformid;
+  if (formId && String(formId).trim()) submitButton.dataset.buttonFormId = String(formId).trim();
+  const buttonData = config.buttondata;
+  if (buttonData && String(buttonData).trim()) submitButton.dataset.buttonData = String(buttonData).trim();
+  submitButton.textContent = config.submitbuttontext?.trim() || 'Next';
+}
 
 // ============================================================
 //  PLAN APPLICATION FORM DEFINITION
@@ -137,7 +156,7 @@ function setupWizardStepIndicator(block) {
 // ============================================================
 //  SUBMIT HANDLER (Triggers Step 3 Success UI)
 // ============================================================
-function attachSubmitHandler(block, planName) {
+function attachSubmitHandler(block, planName, config) {
   const form = block.querySelector('form');
   if (!form) return;
 
@@ -158,37 +177,42 @@ function attachSubmitHandler(block, planName) {
       localStorage.setItem("project_plan_application", JSON.stringify(formData));
 
       const submitBtn = form.querySelector("button[type='submit']");
-      if (submitBtn) {
-        submitBtn.textContent = 'Processing...';
-        submitBtn.disabled = true;
+
+      const buttonDataUrl = submitBtn?.dataset?.buttonData?.trim();
+      if (buttonDataUrl && typeof window.updateDataLayer === 'function') {
+        const sheetData = await fetchButtonDataSheet(buttonDataUrl);
+        if (sheetData) window.updateDataLayer(sheetData);
       }
 
-      // Simulate network delay, then render Step 3 Success message
-      setTimeout(() => {
-        const successMessageHTML = `
-          <div class="Progress Progress--alignment-center wizard-progress-wrapper">
-              <div class="Progress__dots">
-                  <div class="Progress__dot active"></div>
-                  <div class="Progress__dot active"></div>
-                  <div class="Progress__dot active"></div>
-              </div>
-              <div class="Progress__label">3/3 step</div>
-          </div>
-          <div class="Title Title--alignment-center Title--textAlignment-left success-container">
-              <div class="Title__content">
-                  <h1>Congratulations!</h1>
-                  <div class="Text Text--alignment-left Title__subtitle">
-                      <div class="Text__content">
-                          <p>You have just enrolled in the <strong>${planName}</strong>.</p><br><br>
-                          <p>Your application will be available in your account dashboard and sent to you via email together with your onboarding checklist.</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        `;
-        block.innerHTML = successMessageHTML;
-      }, 800);
-      
+      const authoredEventType = submitBtn?.dataset?.buttonEventType?.trim();
+      if (authoredEventType) dispatchCustomEvent(authoredEventType);
+
+      const webhookUrl = submitBtn?.dataset?.buttonWebhookUrl?.trim();
+      const formId = submitBtn?.dataset?.buttonFormId?.trim();
+      if (webhookUrl) await submitToWebhook(form, webhookUrl, formId);
+
+      const successMessageHTML = `
+        <div class="Progress Progress--alignment-center wizard-progress-wrapper">
+            <div class="Progress__dots">
+                <div class="Progress__dot active"></div>
+                <div class="Progress__dot active"></div>
+                <div class="Progress__dot active"></div>
+            </div>
+            <div class="Progress__label">3/3 step</div>
+        </div>
+        <div class="Title Title--alignment-center Title--textAlignment-left success-container">
+            <div class="Title__content">
+                <h1>Congratulations!</h1>
+                <div class="Text Text--alignment-left Title__subtitle">
+                    <div class="Text__content">
+                        <p>You have just enrolled in the <strong>${planName}</strong>.</p><br><br>
+                        <p>Your application will be available in your account dashboard and sent to you via email together with your onboarding checklist.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      `;
+      block.innerHTML = successMessageHTML;
     } catch (error) {
       console.error("Plan application submit error:", error);
     }
@@ -223,7 +247,8 @@ export default async function decorate(block) {
   await formModule.default(formContainer);
 
   setTimeout(() => {
+    applyButtonConfigToSubmitButton(block, config);
     setupWizardStepIndicator(block);
-    attachSubmitHandler(block, planName);
+    attachSubmitHandler(block, planName, config);
   }, 100);
 }
