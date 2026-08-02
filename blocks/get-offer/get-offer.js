@@ -50,7 +50,7 @@ export default async function decorate(block) {
     || config.buttonLabel?.trim()
     || rows[1]?.textContent?.trim()
     || 'Get offer';
-  const toastMessage = (config['toast-message'] ?? config.toastmessage ?? '').trim();
+  const toastMessage = (config['toast-message'] ?? config.toastmessage ?? rows[2]?.textContent ?? '').trim();
 
   block.innerHTML = '';
 

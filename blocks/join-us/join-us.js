@@ -86,7 +86,7 @@ export default async function decorate(block) {
         id: 'description-join-us',
         fieldType: 'heading',
         label: { value: formDesc },
-        appliedCssClassNames: 'col-12 form-description',
+        appliedCssClassNames: `col-12 form-description${!formDesc ? ' is-empty' : ''}`,
       },
       {
         id: 'panel-main',

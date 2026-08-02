@@ -54,6 +54,10 @@ main .join-us h2#heading-join-us {
   letter-spacing: 0.02em;
 }
 
+main .join-us .form-description.is-empty {
+  display: none;
+}
+
 main .join-us h2#description-join-us {
   font-size: 1rem;
   font-weight: 400;
