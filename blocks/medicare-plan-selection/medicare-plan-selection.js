@@ -155,8 +155,24 @@ function setupWizardStepIndicator(block) {
     }
   };
 
+  // AFB only marks a field-wrapper data-active on click/focusin; on the last step the
+  // submit button never receives that until it's clicked once, forcing a double-click.
+  const activateSubmitOnLastStep = () => {
+    const current = wizard.querySelector('.current-wizard-step');
+    const idx = current ? parseInt(current.dataset.index, 10) : -1;
+    if (idx !== totalSteps - 1) return;
+    const submitWrapperEl = wizard.querySelector('.submit-wrapper');
+    if (!submitWrapperEl || submitWrapperEl.dataset.active === 'true') return;
+    wizard.querySelectorAll('[data-active="true"]').forEach((el) => el.removeAttribute('data-active'));
+    submitWrapperEl.dataset.active = 'true';
+  };
+
   updateWizardUI();
-  wizard.addEventListener('wizard:navigate', updateWizardUI);
+  activateSubmitOnLastStep();
+  wizard.addEventListener('wizard:navigate', () => {
+    updateWizardUI();
+    activateSubmitOnLastStep();
+  });
 
   // Append progress dots to the main header, NOT the buttons wrapper
   const headerDiv = block.querySelector('.plan-selection-header');
@@ -177,13 +193,9 @@ function attachSubmitHandler(block, config) {
   if (!form) return;
 
   const redirectUrl = config.redirecturl || config.redirectUrl;
-  let submitting = false;
 
-  // capture: true guarantees this runs before form.js's own no-op submit listener
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (submitting) return;
-    submitting = true;
     const formData = {};
     
     form.querySelectorAll('input, select, textarea').forEach((el) => {
@@ -228,10 +240,8 @@ function attachSubmitHandler(block, config) {
       }
     } catch (error) {
       console.error("Plan selection submit error:", error);
-    } finally {
-      submitting = false;
     }
-  }, true);
+  });
 }
 
 // ============================================================
