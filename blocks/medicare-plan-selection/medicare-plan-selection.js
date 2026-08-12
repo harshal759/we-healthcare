@@ -244,9 +244,13 @@ function attachSubmitHandler(block, config) {
   if (!form) return;
 
   const redirectUrl = config.redirecturl || config.redirectUrl;
+  let submitting = false;
 
+  // capture: true guarantees this runs before form.js's own no-op submit listener
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (submitting) return;
+    submitting = true;
     const formData = {};
     
     form.querySelectorAll('input, select, textarea').forEach((el) => {
@@ -322,8 +326,10 @@ function attachSubmitHandler(block, config) {
       }
     } catch (error) {
       console.error("Plan selection submit error:", error);
+    } finally {
+      submitting = false;
     }
-  });
+  }, true);
 }
 
 // ============================================================
