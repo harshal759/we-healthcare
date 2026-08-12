@@ -155,24 +155,8 @@ function setupWizardStepIndicator(block) {
     }
   };
 
-  // AFB only marks a field-wrapper data-active on click/focusin; on the last step the
-  // submit button never receives that until it's clicked once, forcing a double-click.
-  const activateSubmitOnLastStep = () => {
-    const current = wizard.querySelector('.current-wizard-step');
-    const idx = current ? parseInt(current.dataset.index, 10) : -1;
-    if (idx !== totalSteps - 1) return;
-    const submitWrapperEl = wizard.querySelector('.submit-wrapper');
-    if (!submitWrapperEl || submitWrapperEl.dataset.active === 'true') return;
-    wizard.querySelectorAll('[data-active="true"]').forEach((el) => el.removeAttribute('data-active'));
-    submitWrapperEl.dataset.active = 'true';
-  };
-
   updateWizardUI();
-  activateSubmitOnLastStep();
-  wizard.addEventListener('wizard:navigate', () => {
-    updateWizardUI();
-    activateSubmitOnLastStep();
-  });
+  wizard.addEventListener('wizard:navigate', updateWizardUI);
 
   // Append progress dots to the main header, NOT the buttons wrapper
   const headerDiv = block.querySelector('.plan-selection-header');
