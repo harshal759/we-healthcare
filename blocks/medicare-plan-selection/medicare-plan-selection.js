@@ -162,7 +162,7 @@ function setupWizardStepIndicator(block, config = {}, stepEvent = '', startedEve
   const wizard = block.querySelector('form .wizard');
   if (!wizard) return;
   // AFB model only learns the active step on first interaction otherwise, causing a double-submit
-  focusFormOnNavigate(wizard);
+  focusFormOnNavigate(wizard)
 
   const totalSteps = wizard.querySelectorAll('.panel-wrapper').length;
   const btnWrapper = wizard.querySelector('.wizard-button-wrapper');
