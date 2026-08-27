@@ -183,6 +183,8 @@ function buildPlanApplicationDef(planName) {
 function setupWizardStepIndicator(block, config = {}, stepEvent = '', startedEvent = '') {
   const wizard = block.querySelector('form .wizard');
   if (!wizard) return;
+  // AFB model only learns the active step on first interaction otherwise, causing a double-submit
+  focusFormOnNavigate(wizard)
 
   // The application form has 3 panels including final success state.
   const totalVisualSteps = 3; 
