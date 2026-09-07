@@ -240,15 +240,15 @@ function renderStep2Content(stepEl, state, config) {
 
   const card = document.createElement('div');
   card.className = 'ho-doctor-card';
-  const rating = Math.min(5, Math.max(0, parseInt(config['doctor-rating'], 10) || 5));
-  const doctorPhoto = config['doctor-photo'] || '/content/dam/we-healthcare/en/images/doctors/dr-verma-md.png';
+  const rating = 5;
+  const doctorPhoto = '/content/dam/we-healthcare/en/images/doctors/dr-verma-md.png';
   card.innerHTML = `
-    <div class="ho-doctor-photo">${doctorPhoto ? `<img src="${doctorPhoto}" alt="${config['doctor-name'] || 'Doctor'}">` : ''}</div>
+    <div class="ho-doctor-photo"><img src="${doctorPhoto}" alt="Doctor"></div>
     <div class="ho-doctor-info">
-      <div class="ho-doctor-rating" aria-label="${rating} out of 5 stars">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</div>
-      <p class="ho-doctor-title">${config['doctor-title'] || 'Doctor'}</p>
-      <p class="ho-doctor-name">${config['doctor-name'] || 'Dr. Verma, MD'}</p>
-      <a class="ho-doctor-profile-link" href="${config['doctor-profile-url'] || '#'}">Doctor's Profile</a>
+      <div class="ho-doctor-rating" aria-label="${rating} out of 5 stars">${'★'.repeat(rating)}</div>
+      <p class="ho-doctor-title">Doctor</p>
+      <p class="ho-doctor-name">Dr. Verma, MD</p>
+      <a class="ho-doctor-profile-link" href="#">Doctor's Profile</a>
     </div>
   `;
 
@@ -283,15 +283,14 @@ function renderStep3Content(stepEl, state, config) {
 
 // ── Step 4: Enroll in Wellness Program ───────────────────────────────────
 
-function renderStep4Content(stepEl, config) {
+function renderStep4Content(stepEl) {
   const title = document.createElement('h2');
   title.className = 'ho-title';
   title.textContent = 'Enroll in Wellness Program';
 
-  const wellnessImage = config['wellness-image'] || '/content/dam/we-healthcare/en/images/we-healthcare-mobile-home.jpg';
   const image = document.createElement('img');
   image.className = 'ho-wellness-image';
-  image.src = wellnessImage;
+  image.src = '/content/dam/we-healthcare/en/images/we-healthcare-mobile-home.jpg';
   image.alt = '';
 
   stepEl.append(title, image);
@@ -305,12 +304,11 @@ function renderComplete(config) {
 
   const title = document.createElement('h1');
   title.className = 'ho-title';
-  title.textContent = config['success-heading'] || 'Onboarding complete';
+  title.textContent = 'Onboarding complete';
 
   const message = document.createElement('p');
   message.className = 'ho-complete-text';
-  message.textContent = config['success-message']
-    || 'Thank you for completing the onboarding process. You should receive an email with summary and a link to a mobile app which will assist in your Wellness Program.';
+  message.textContent = 'Thank you for completing the onboarding process. You should receive an email with summary and a link to a mobile app which will assist in your Wellness Program.';
 
   const proceed = document.createElement('p');
   proceed.className = 'ho-complete-text';
@@ -327,7 +325,7 @@ function renderComplete(config) {
 
 // ── Adaptive Form Block (AFB) wizard definition ──────────────────────────
 
-function buildFormDef(config) {
+function buildFormDef() {
   const emptyStep = (id) => ({
     id, name: id, fieldType: 'panel', items: [],
   });
@@ -356,7 +354,7 @@ function buildFormDef(config) {
                 name: 'confirmEnrollment',
                 fieldType: 'button',
                 buttonType: 'submit',
-                label: { value: config['step4-next-label'] || 'Confirm Enrollment' },
+                label: { value: 'Confirm Enrollment' },
                 appliedCssClassNames: 'submit-wrapper',
               },
             ],
@@ -385,11 +383,7 @@ function setupWizard(block, config, state) {
     return current ? parseInt(current.dataset.index, 10) : 0;
   };
 
-  const nextLabels = [
-    config['step1-next-label'] || 'Next',
-    config['step2-next-label'] || 'Schedule Appointment',
-    config['step3-next-label'] || 'Enroll in Wellness Program',
-  ];
+  const nextLabels = ['Next', 'Schedule Appointment', 'Enroll in Wellness Program'];
 
   const nextWrapperOld = wizardPanel.querySelector('.wizard-button-next');
   const nextWrapper = nextWrapperOld.cloneNode(true);
@@ -436,7 +430,7 @@ export default async function decorate(block) {
     signed: false,
   };
 
-  const formDef = buildFormDef(config);
+  const formDef = buildFormDef();
   const formContainer = document.createElement('div');
   formContainer.className = 'form-container';
 
@@ -468,7 +462,7 @@ export default async function decorate(block) {
 
     step4.classList.add('ho-step', 'ho-step-wellness');
     const submitBtnWrapper = step4.querySelector('.submit-wrapper');
-    renderStep4Content(step4, config);
+    renderStep4Content(step4);
     // the submit button only becomes visible (via CSS) once it's inside the shared wizard-button-wrapper
     block.querySelector('.wizard-button-wrapper')?.append(submitBtnWrapper);
 
