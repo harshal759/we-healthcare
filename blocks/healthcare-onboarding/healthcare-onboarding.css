@@ -1,0 +1,691 @@
+/* Healthcare Onboarding block */
+main .healthcare-onboarding {
+  --ho-accent-color: var(--main-accent-color, #1671d9);
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+  font-family: var(--body-font-family, system-ui, sans-serif);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+main .healthcare-onboarding .ho-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Progress dots ------------------------------------------------------------ */
+main .healthcare-onboarding .ho-progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+main .healthcare-onboarding .ho-progress-dots {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+main .healthcare-onboarding .ho-progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  opacity: 0.3;
+  background-color: #acacac;
+  transition: all 0.3s ease;
+}
+
+main .healthcare-onboarding .ho-progress-dot.active {
+  background-color: var(--ho-accent-color);
+  opacity: 1;
+}
+
+main .healthcare-onboarding .ho-progress-label {
+  font-size: 14px;
+  color: #464646;
+}
+
+/* Shared typography / buttons ---------------------------------------------- */
+main .healthcare-onboarding .ho-title {
+  font-size: clamp(1.5rem, 4vw, 1.85rem);
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 32px;
+}
+
+main .healthcare-onboarding .ho-title-left {
+  text-align: left;
+}
+
+main .healthcare-onboarding .ho-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s, background 0.2s;
+}
+
+main .healthcare-onboarding .ho-btn-primary {
+  background: var(--ho-accent-color);
+  color: #fff;
+}
+
+main .healthcare-onboarding .ho-btn-primary:hover {
+  opacity: 0.9;
+}
+
+main .healthcare-onboarding .ho-btn-next {
+  margin-top: 8px;
+}
+
+main .healthcare-onboarding .ho-link-btn {
+  display: block;
+  margin: 14px auto 0;
+  background: none;
+  border: none;
+  color: var(--ho-accent-color);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+main .healthcare-onboarding .ho-error {
+  color: #c62828;
+  font-size: 0.8125rem;
+  margin: 12px 0;
+}
+
+/* Step 1: Upload your photo ------------------------------------------------ */
+main .healthcare-onboarding .ho-photo-frame {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 24px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+main .healthcare-onboarding .ho-photo-placeholder {
+  width: 60%;
+  height: 60%;
+  color: #4b4b4b;
+}
+
+main .healthcare-onboarding .ho-photo-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+main .healthcare-onboarding .ho-photo-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--ho-accent-color);
+}
+
+main .healthcare-onboarding .ho-photo-corner-tl {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+main .healthcare-onboarding .ho-photo-corner-tr {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+main .healthcare-onboarding .ho-photo-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+
+main .healthcare-onboarding .ho-photo-corner-br {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+/* Step 2: Schedule 1st check-up --------------------------------------------- */
+main .healthcare-onboarding .ho-doctor-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 8%);
+  padding: 16px;
+  margin-bottom: 28px;
+}
+
+main .healthcare-onboarding .ho-doctor-photo {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #e4e4e4;
+}
+
+main .healthcare-onboarding .ho-doctor-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+main .healthcare-onboarding .ho-doctor-rating {
+  color: var(--ho-accent-color);
+  font-size: 0.9375rem;
+  letter-spacing: 2px;
+}
+
+main .healthcare-onboarding .ho-doctor-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 4px 0 0;
+}
+
+main .healthcare-onboarding .ho-doctor-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 2px 0;
+}
+
+main .healthcare-onboarding .ho-doctor-profile-link {
+  font-size: 0.875rem;
+  color: var(--ho-accent-color);
+  text-decoration: none;
+}
+
+main .healthcare-onboarding .ho-doctor-profile-link:hover {
+  text-decoration: underline;
+}
+
+main .healthcare-onboarding .ho-pick-date-label {
+  color: #909090;
+  font-size: 0.9375rem;
+  margin: 0 0 12px;
+}
+
+main .healthcare-onboarding .ho-slot-picker-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+main .healthcare-onboarding .ho-slot-nav {
+  flex-shrink: 0;
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #4b4b4b;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 30px;
+  border-radius: 16px;
+  transition: background 0.15s;
+}
+
+main .healthcare-onboarding .ho-slot-nav svg {
+  width: 20px;
+  height: 20px;
+  fill: currentcolor;
+}
+
+main .healthcare-onboarding .ho-slot-nav-prev svg {
+  transform: rotate(180deg);
+}
+
+main .healthcare-onboarding .ho-slot-nav:hover:not(:disabled) {
+  background: rgb(0 0 0 / 6%);
+}
+
+main .healthcare-onboarding .ho-slot-nav:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+main .healthcare-onboarding .ho-slot-columns {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+}
+
+main .healthcare-onboarding .ho-slot-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+main .healthcare-onboarding .ho-slot-col-header {
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+main .healthcare-onboarding .ho-slot-col-header strong {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+main .healthcare-onboarding .ho-slot-col-header em {
+  display: block;
+  font-style: normal;
+  font-size: 0.75rem;
+  color: #acacac;
+}
+
+main .healthcare-onboarding .ho-slot-option {
+  width: 100%;
+  padding: 10px 6px;
+  background: rgba(22, 113, 217, 10%);
+  border: 1px solid rgba(22, 113, 217, 12%);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+main .healthcare-onboarding .ho-slot-option:hover:not(.is-disabled):not(.is-selected) {
+  background: rgba(22, 113, 217, 18%);
+}
+
+main .healthcare-onboarding .ho-slot-option.is-selected {
+  color: var(--ho-accent-color);
+  border-color: var(--ho-accent-color);
+  background: rgba(22, 113, 217, 8%);
+}
+
+main .healthcare-onboarding .ho-slot-option.is-disabled {
+  background: transparent;
+  border-color: transparent;
+  text-decoration: line-through;
+  color: #999;
+  cursor: default;
+}
+
+/* Step 3: Transfer Prescriptions --------------------------------------------- */
+main .healthcare-onboarding .ho-sign-panel {
+  text-align: left;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #d5d5d5;
+  margin-bottom: 20px;
+}
+
+main .healthcare-onboarding .ho-sign-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f4f4f4;
+  border-bottom: 1px solid #d5d5d5;
+  font-size: 0.8125rem;
+}
+
+main .healthcare-onboarding .ho-sign-options {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  color: #333;
+}
+
+main .healthcare-onboarding .ho-sign-doc-name {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+main .healthcare-onboarding .ho-sign-required {
+  color: var(--ho-accent-color);
+}
+
+main .healthcare-onboarding .ho-sign-required b {
+  background: var(--ho-accent-color);
+  color: #fff;
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: 4px;
+}
+
+main .healthcare-onboarding .ho-sign-body {
+  position: relative;
+  min-height: 180px;
+  background: #b0b0b0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main .healthcare-onboarding .ho-sign-start {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  background: var(--ho-accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  padding: 14px 6px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+main .healthcare-onboarding .ho-sign-status {
+  color: #f0f0f0;
+  font-size: 0.9375rem;
+  margin: 0;
+  padding: 0 16px;
+  text-align: center;
+}
+
+main .healthcare-onboarding .ho-sign-panel.is-signed .ho-sign-status {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+main .healthcare-onboarding .ho-sign-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #1a1a1a;
+  padding: 12px 16px;
+}
+
+main .healthcare-onboarding .ho-sign-consent {
+  color: #d5d5d5;
+  font-size: 0.75rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+main .healthcare-onboarding .ho-sign-consent a {
+  color: #6cb2ff;
+}
+
+main .healthcare-onboarding .ho-sign-continue {
+  flex-shrink: 0;
+  padding: 8px 20px;
+  font-size: 0.875rem;
+}
+
+/* Step 4: Enroll in Wellness Program ------------------------------------------ */
+main .healthcare-onboarding .ho-step-wellness {
+  text-align: left;
+}
+
+main .healthcare-onboarding .ho-greeting-card {
+  background: #f4f4f4;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+main .healthcare-onboarding .ho-greeting-today {
+  color: #909090;
+  font-size: 0.8125rem;
+  margin: 0;
+}
+
+main .healthcare-onboarding .ho-greeting-name {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 4px 0;
+}
+
+main .healthcare-onboarding .ho-greeting-link {
+  color: var(--ho-accent-color);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+main .healthcare-onboarding .ho-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+main .healthcare-onboarding .ho-stat-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 8%);
+  padding: 14px 16px;
+}
+
+main .healthcare-onboarding .ho-stat-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+}
+
+main .healthcare-onboarding .ho-stat-ring {
+  --ho-ring-value: 0;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: conic-gradient(var(--ho-accent-color) calc(var(--ho-ring-value) * 1%), #e4e4e4 0);
+}
+
+main .healthcare-onboarding .ho-stat-ring span {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+main .healthcare-onboarding .ho-stat-ring em {
+  font-style: normal;
+  font-size: 0.6875rem;
+  color: #909090;
+}
+
+main .healthcare-onboarding .ho-stat-warning {
+  color: #c62828;
+  font-size: 0.75rem;
+  margin: 0 0 6px;
+}
+
+main .healthcare-onboarding .ho-stat-value {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+main .healthcare-onboarding .ho-stat-value span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #909090;
+}
+
+main .healthcare-onboarding .ho-stat-badge {
+  margin-top: 8px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff3e0;
+  color: #e08a00;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+main .healthcare-onboarding .ho-stat-badge em {
+  font-style: normal;
+  font-size: 0.5625rem;
+  font-weight: 400;
+  color: #909090;
+}
+
+main .healthcare-onboarding .ho-stat-training {
+  background: var(--ho-accent-color);
+  color: #fff;
+}
+
+main .healthcare-onboarding .ho-stat-training .ho-stat-label,
+main .healthcare-onboarding .ho-stat-training .ho-stat-caption {
+  color: #fff;
+}
+
+main .healthcare-onboarding .ho-stat-caption {
+  font-size: 0.75rem;
+  margin: 0 0 8px;
+}
+
+main .healthcare-onboarding .ho-stat-activities {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 0.8125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+main .healthcare-onboarding .ho-stat-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  margin: 0;
+}
+
+main .healthcare-onboarding .ho-stat-progress a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+main .healthcare-onboarding .ho-prescriptions-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+}
+
+main .healthcare-onboarding .ho-prescriptions-list {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+main .healthcare-onboarding .ho-prescription-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 24px;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  color: #1a1a1a;
+}
+
+main .healthcare-onboarding .ho-prescription-remove {
+  background: none;
+  border: none;
+  color: #909090;
+  cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+main .healthcare-onboarding .ho-prescription-remove:hover {
+  color: #c62828;
+}
+
+main .healthcare-onboarding .ho-btn-confirm {
+  display: flex;
+  width: 100%;
+}
+
+/* Step 5: Onboarding complete ------------------------------------------------ */
+main .healthcare-onboarding .ho-step-complete {
+  padding-top: 2rem;
+}
+
+main .healthcare-onboarding .ho-complete-text {
+  color: #464646;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+
+/* Responsive ----------------------------------------------------------------- */
+@media (width < 600px) {
+  main .healthcare-onboarding {
+    padding: 32px 16px 48px;
+  }
+
+  main .healthcare-onboarding .ho-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  main .healthcare-onboarding .ho-doctor-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  main .healthcare-onboarding .ho-sign-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
