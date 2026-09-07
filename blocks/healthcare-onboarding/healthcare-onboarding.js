@@ -2,10 +2,11 @@ import { readBlockConfig } from '../../scripts/aem.js';
 import { normalizeAemPath } from '../../scripts/scripts.js';
 import { dispatchCustomEvent } from '../../scripts/custom-events.js';
 import { submitToWebhook, fetchButtonDataSheet } from '../../scripts/form-data-layer.js';
+import { navigate as wizardNavigate } from '../form/components/wizard/wizard.js';
 
-const TOTAL_STEPS = 4;
 const DEFAULT_TIME_SLOTS = ['9 AM', '10 AM', '11 AM', '12 AM'];
 const DEFAULT_DAYS_SHOWN = 3;
+const DEFAULT_MOBILE_DAYS_SHOWN = 1;
 const SHORT_DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const SHORT_MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -54,21 +55,21 @@ async function triggerButtonTracking(button) {
 
 // ── Progress dots ─────────────────────────────────────────────────────────
 
-function buildProgress(stepIndex) {
+function buildProgress(stepIndex, totalSteps) {
   const wrapper = document.createElement('div');
-  wrapper.className = 'ho-progress Progress Progress--alignment-center';
+  wrapper.className = 'ho-progress';
 
   const dots = document.createElement('div');
-  dots.className = 'ho-progress-dots Progress__dots';
-  for (let i = 0; i < TOTAL_STEPS; i += 1) {
+  dots.className = 'ho-progress-dots';
+  for (let i = 0; i < totalSteps; i += 1) {
     const dot = document.createElement('div');
-    dot.className = `ho-progress-dot Progress__dot${i <= stepIndex ? ' active' : ''}`;
+    dot.className = `ho-progress-dot${i <= stepIndex ? ' active' : ''}`;
     dots.append(dot);
   }
 
   const label = document.createElement('div');
-  label.className = 'ho-progress-label Progress__label';
-  label.textContent = `${stepIndex + 1}/${TOTAL_STEPS} step`;
+  label.className = 'ho-progress-label';
+  label.textContent = `${stepIndex + 1}/${totalSteps} step`;
 
   wrapper.append(dots, label);
   return wrapper;
@@ -76,10 +77,7 @@ function buildProgress(stepIndex) {
 
 // ── Step 1: Upload your photo ────────────────────────────────────────────
 
-function renderStep1(state, config, goNext) {
-  const step = document.createElement('div');
-  step.className = 'ho-step ho-step-photo';
-
+function renderStep1Content(stepEl, state) {
   const title = document.createElement('h1');
   title.className = 'ho-title';
   title.textContent = 'Upload your photo';
@@ -87,14 +85,7 @@ function renderStep1(state, config, goNext) {
   const frame = document.createElement('div');
   frame.className = 'ho-photo-frame';
   frame.innerHTML = `
-    <span class="ho-photo-corner ho-photo-corner-tl"></span>
-    <span class="ho-photo-corner ho-photo-corner-tr"></span>
-    <span class="ho-photo-corner ho-photo-corner-bl"></span>
-    <span class="ho-photo-corner ho-photo-corner-br"></span>
-    <svg class="ho-photo-placeholder" viewBox="0 0 100 100" focusable="false" aria-hidden="true">
-      <path d="M50 15a18 18 0 1 1 0 36 18 18 0 0 1 0-36Z" fill="none" stroke="currentColor" stroke-width="3"/>
-      <path d="M20 88c2-20 15-32 30-32s28 12 30 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    </svg>
+    <img class="ho-photo-placeholder" src="/icons/profile-image-upload.svg" alt="" aria-hidden="true">
   `;
 
   const cameraInput = document.createElement('input');
@@ -139,36 +130,22 @@ function renderStep1(state, config, goNext) {
   galleryBtn.textContent = 'Or choose from the gallery';
   galleryBtn.addEventListener('click', () => galleryInput.click());
 
-  const error = document.createElement('p');
-  error.className = 'ho-error';
-  error.hidden = true;
-  error.textContent = 'Please upload a photo to continue.';
-
-  const nextBtn = document.createElement('button');
-  nextBtn.type = 'button';
-  nextBtn.className = 'ho-btn ho-btn-primary ho-btn-next';
-  nextBtn.textContent = config['step1-next-label'] || 'Next';
-  nextBtn.addEventListener('click', () => {
-    if (!state.photo) {
-      error.hidden = false;
-      return;
-    }
-    error.hidden = true;
-    goNext();
-  });
-
-  step.append(title, frame, cameraInput, galleryInput, takePhotoBtn, galleryBtn, error, nextBtn);
-  return step;
+  stepEl.append(title, frame, cameraInput, galleryInput, takePhotoBtn, galleryBtn);
 }
 
 // ── Step 2: Schedule 1st check-up ────────────────────────────────────────
 
 function buildSlotPicker(config, state) {
   const dailyOptions = parseList(config['time-slots'], DEFAULT_TIME_SLOTS);
-  const daysShown = parseInt(config['days-shown'], 10) || DEFAULT_DAYS_SHOWN;
+  let daysShown = parseInt(config['days-shown'], 10) || DEFAULT_DAYS_SHOWN;
+  const mobileDaysShown = parseInt(config['mobile-days-shown'], 10) || DEFAULT_MOBILE_DAYS_SHOWN;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const slotData = {};
+
+  if (window.innerWidth < 900) {
+    daysShown = mobileDaysShown;
+  }
 
   const wrapper = document.createElement('div');
   wrapper.className = 'ho-slot-picker';
@@ -256,10 +233,7 @@ function buildSlotPicker(config, state) {
   return wrapper;
 }
 
-function renderStep2(state, config, goNext) {
-  const step = document.createElement('div');
-  step.className = 'ho-step ho-step-schedule';
-
+function renderStep2Content(stepEl, state, config) {
   const title = document.createElement('h2');
   title.className = 'ho-title';
   title.textContent = 'Schedule 1st check-up';
@@ -267,7 +241,7 @@ function renderStep2(state, config, goNext) {
   const card = document.createElement('div');
   card.className = 'ho-doctor-card';
   const rating = Math.min(5, Math.max(0, parseInt(config['doctor-rating'], 10) || 5));
-  const doctorPhoto = config['doctor-photo'] || '';
+  const doctorPhoto = config['doctor-photo'] || '/content/dam/we-healthcare/en/images/doctors/dr-verma-md.png';
   card.innerHTML = `
     <div class="ho-doctor-photo">${doctorPhoto ? `<img src="${doctorPhoto}" alt="${config['doctor-name'] || 'Doctor'}">` : ''}</div>
     <div class="ho-doctor-info">
@@ -284,188 +258,43 @@ function renderStep2(state, config, goNext) {
 
   const slotPicker = buildSlotPicker(config, state);
 
-  const error = document.createElement('p');
-  error.className = 'ho-error';
-  error.hidden = true;
-  error.textContent = 'Please select an available day and time.';
-
-  const scheduleBtn = document.createElement('button');
-  scheduleBtn.type = 'button';
-  scheduleBtn.className = 'ho-btn ho-btn-primary';
-  scheduleBtn.textContent = config['step2-next-label'] || 'Schedule Appointment';
-  scheduleBtn.addEventListener('click', () => {
-    if (!state.selectedSlot) {
-      error.hidden = false;
-      return;
-    }
-    error.hidden = true;
-    goNext();
-  });
-
-  step.append(title, card, pickDateLabel, slotPicker, error, scheduleBtn);
-  return step;
+  stepEl.append(title, card, pickDateLabel, slotPicker);
 }
 
 // ── Step 3: Transfer Prescriptions ───────────────────────────────────────
 
-function renderStep3(state, config, goNext) {
-  const step = document.createElement('div');
-  step.className = 'ho-step ho-step-transfer';
-
+function renderStep3Content(stepEl, state, config) {
   const title = document.createElement('h2');
   title.className = 'ho-title';
   title.textContent = 'Transfer Prescriptions';
 
-  const documentName = config['document-name'] || 'PrescriptionTransferForm';
-  const tosUrl = config['tos-url'] || '#';
-  const privacyUrl = config['privacy-url'] || '#';
+  const signIframeUrl = config['sign-iframe-url'] || 'https://adobe.na1.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhCCoM_XFoE3aMHQVYRZyFcK9NUeu99cy1cOZBgpNiHJRA3GJm9Vp6qQIIc_oAvmbr4*&hosted=false';
 
   const panel = document.createElement('div');
   panel.className = 'ho-sign-panel';
   panel.innerHTML = `
-    <div class="ho-sign-header">
-      <button type="button" class="ho-sign-options">Options ⌄</button>
-      <span class="ho-sign-doc-name">Please sign: ${documentName}</span>
-      <span class="ho-sign-required">Next required field <b>2</b></span>
-    </div>
     <div class="ho-sign-body">
-      <button type="button" class="ho-sign-start">Start</button>
-      <p class="ho-sign-status">Document loading&hellip;</p>
-    </div>
-    <div class="ho-sign-footer">
-      <p class="ho-sign-consent">By clicking continue, I acknowledge that I have read and agree to the Adobe
-        <a href="${tosUrl}">Terms of Use</a>. See our <a href="${privacyUrl}">Privacy Policy</a> for details on our
-        privacy practices.</p>
-      <button type="button" class="ho-btn ho-btn-primary ho-sign-continue">Continue</button>
+      <iframe class="ho-sign-iframe" title="iframe" src="${signIframeUrl}" width="100%" height="100%" frameborder="0"></iframe>
     </div>
   `;
 
-  panel.querySelector('.ho-sign-start').addEventListener('click', () => {
-    panel.querySelector('.ho-sign-status').textContent = 'Document loaded. Please review and sign below.';
-  });
-
-  panel.querySelector('.ho-sign-continue').addEventListener('click', () => {
-    state.signed = true;
-    panel.querySelector('.ho-sign-status').textContent = `✓ ${documentName} signed`;
-    panel.classList.add('is-signed');
-  });
-
-  const error = document.createElement('p');
-  error.className = 'ho-error';
-  error.hidden = true;
-  error.textContent = 'Please sign the document to continue.';
-
-  const enrollBtn = document.createElement('button');
-  enrollBtn.type = 'button';
-  enrollBtn.className = 'ho-btn ho-btn-primary';
-  enrollBtn.textContent = config['step3-next-label'] || 'Enroll in Wellness Program';
-  enrollBtn.addEventListener('click', () => {
-    if (!state.signed) {
-      error.hidden = false;
-      return;
-    }
-    error.hidden = true;
-    goNext();
-  });
-
-  step.append(title, panel, error, enrollBtn);
-  return step;
+  stepEl.append(title, panel);
 }
 
 // ── Step 4: Enroll in Wellness Program ───────────────────────────────────
 
-function renderStep4(state, config, goNext) {
-  const step = document.createElement('div');
-  step.className = 'ho-step ho-step-wellness';
-
+function renderStep4Content(stepEl, config) {
   const title = document.createElement('h2');
-  title.className = 'ho-title ho-title-left';
+  title.className = 'ho-title';
   title.textContent = 'Enroll in Wellness Program';
 
-  const greetingName = config['greeting-name'] || 'Sarah';
-  const steps = config['steps-count'] || '912';
-  const sleepHours = config['sleep-hours'] || '7.15';
-  const sleepGoal = config['sleep-goal-percent'] || '82';
-  const sleepGoalHours = config['sleep-goal-hours'] || '9';
-  const heartBpm = config['heart-bpm'] || '71';
-  const activities = parseList(config.activities, ['Cycling: 15 miles', 'Yoga: 40 min', 'Jumping Jacks: 20', 'Meditation: 25 min']);
+  const wellnessImage = config['wellness-image'] || '/content/dam/we-healthcare/en/images/we-healthcare-mobile-home.jpg';
+  const image = document.createElement('img');
+  image.className = 'ho-wellness-image';
+  image.src = wellnessImage;
+  image.alt = '';
 
-  const greeting = document.createElement('div');
-  greeting.className = 'ho-greeting-card';
-  greeting.innerHTML = `
-    <p class="ho-greeting-today">Today</p>
-    <p class="ho-greeting-name">Good day, ${greetingName}!</p>
-    <a class="ho-greeting-link" href="#">See your daily challenges</a>
-  `;
-
-  const stats = document.createElement('div');
-  stats.className = 'ho-stats-grid';
-  stats.innerHTML = `
-    <div class="ho-stat-card ho-stat-walk">
-      <p class="ho-stat-label">Walk</p>
-      <div class="ho-stat-ring" style="--ho-ring-value:${Math.min(100, Math.round((steps / 10000) * 100))}">
-        <span>${steps}</span>
-        <em>Steps</em>
-      </div>
-    </div>
-    <div class="ho-stat-card ho-stat-sleep">
-      <p class="ho-stat-label">Sleep</p>
-      <p class="ho-stat-warning">Not enough sleep today</p>
-      <p class="ho-stat-value">${sleepHours}<span>Hours</span></p>
-      <div class="ho-stat-badge">${sleepGoal}%<em>Sleep Goal<br>${sleepGoalHours}hr</em></div>
-    </div>
-    <div class="ho-stat-card ho-stat-heart">
-      <p class="ho-stat-label">Heart</p>
-      <p class="ho-stat-value">${heartBpm}<span>bpm</span></p>
-    </div>
-    <div class="ho-stat-card ho-stat-training">
-      <p class="ho-stat-label">Training</p>
-      <p class="ho-stat-caption">Planned Activities: ${activities.length}</p>
-      <ul class="ho-stat-activities">${activities.map((a) => `<li>${a}</li>`).join('')}</ul>
-      <p class="ho-stat-progress"><strong>0</strong> Min <a href="#">START ›</a></p>
-    </div>
-  `;
-
-  const prescriptionsHeading = document.createElement('p');
-  prescriptionsHeading.className = 'ho-prescriptions-heading';
-  prescriptionsHeading.textContent = 'Active Prescriptions';
-
-  const prescriptionsList = document.createElement('ul');
-  prescriptionsList.className = 'ho-prescriptions-list';
-
-  function renderPrescriptions() {
-    prescriptionsList.innerHTML = '';
-    state.prescriptions.forEach((item, index) => {
-      const li = document.createElement('li');
-      li.className = 'ho-prescription-item';
-      li.innerHTML = `<span>${item}</span>`;
-      const removeBtn = document.createElement('button');
-      removeBtn.type = 'button';
-      removeBtn.className = 'ho-prescription-remove';
-      removeBtn.setAttribute('aria-label', `Remove ${item}`);
-      removeBtn.textContent = '✕';
-      removeBtn.addEventListener('click', () => {
-        state.prescriptions.splice(index, 1);
-        renderPrescriptions();
-      });
-      li.append(removeBtn);
-      prescriptionsList.append(li);
-    });
-  }
-  renderPrescriptions();
-
-  const confirmBtn = document.createElement('button');
-  confirmBtn.type = 'button';
-  confirmBtn.className = 'ho-btn ho-btn-primary ho-btn-confirm';
-  confirmBtn.textContent = config['step4-next-label'] || 'Confirm Enrollment';
-  applyButtonConfigToButton(confirmBtn, config);
-  confirmBtn.addEventListener('click', async () => {
-    await triggerButtonTracking(confirmBtn);
-    goNext();
-  });
-
-  step.append(title, greeting, stats, prescriptionsHeading, prescriptionsList, confirmBtn);
-  return step;
+  stepEl.append(title, image);
 }
 
 // ── Step 5: Onboarding complete ──────────────────────────────────────────
@@ -496,6 +325,102 @@ function renderComplete(config) {
   return step;
 }
 
+// ── Adaptive Form Block (AFB) wizard definition ──────────────────────────
+
+function buildFormDef(config) {
+  const emptyStep = (id) => ({
+    id, name: id, fieldType: 'panel', items: [],
+  });
+
+  return {
+    id: 'healthcare-onboarding-form',
+    fieldType: 'form',
+    appliedCssClassNames: 'healthcare-onboarding-form is-wizard',
+    items: [
+      {
+        id: 'ho-wizard',
+        name: 'wizard',
+        fieldType: 'panel',
+        ':type': 'fd/panel/wizard',
+        items: [
+          emptyStep('ho-step-1'),
+          emptyStep('ho-step-2'),
+          emptyStep('ho-step-3'),
+          {
+            id: 'ho-step-4',
+            name: 'ho-step-4',
+            fieldType: 'panel',
+            items: [
+              {
+                id: 'ho-submit-btn',
+                name: 'confirmEnrollment',
+                fieldType: 'button',
+                buttonType: 'submit',
+                label: { value: config['step4-next-label'] || 'Confirm Enrollment' },
+                appliedCssClassNames: 'submit-wrapper',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+}
+
+// ── Wizard wiring: progress dots, Next-button gating, submit ────────────
+
+function setupWizard(block, config, state) {
+  const form = block.querySelector('form');
+  const wizardPanel = block.querySelector('.wizard');
+  if (!form || !wizardPanel) return;
+
+  // must stay in the DOM (hidden via CSS): WizardLayout.navigate() reads its active menu item internally
+  block.querySelector('.wizard-button-prev')?.remove();
+
+  const progressHolder = document.createElement('div');
+  block.insertBefore(progressHolder, block.firstChild);
+
+  const getCurrentIndex = () => {
+    const current = wizardPanel.querySelector('.current-wizard-step');
+    return current ? parseInt(current.dataset.index, 10) : 0;
+  };
+
+  const nextLabels = [
+    config['step1-next-label'] || 'Next',
+    config['step2-next-label'] || 'Schedule Appointment',
+    config['step3-next-label'] || 'Enroll in Wellness Program',
+  ];
+
+  const nextWrapperOld = wizardPanel.querySelector('.wizard-button-next');
+  const nextWrapper = nextWrapperOld.cloneNode(true);
+  nextWrapperOld.replaceWith(nextWrapper);
+  const nextBtn = nextWrapper.querySelector('button');
+  nextBtn.classList.add('ho-btn', 'ho-btn-primary', 'ho-btn-next');
+
+  const syncUI = () => {
+    const idx = getCurrentIndex();
+    progressHolder.replaceChildren(buildProgress(idx, 4));
+    if (nextLabels[idx]) nextBtn.textContent = nextLabels[idx];
+  };
+
+  nextWrapper.addEventListener('click', () => {
+    wizardNavigate(wizardPanel, true);
+  });
+
+  wizardPanel.addEventListener('wizard:navigate', syncUI);
+  syncUI();
+
+  const submitBtn = form.querySelector("button[type='submit']");
+  applyButtonConfigToButton(submitBtn, config);
+  submitBtn.classList.add('ho-btn', 'ho-btn-primary', 'ho-btn-confirm');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    await triggerButtonTracking(submitBtn);
+    block.replaceChildren(renderComplete(config));
+  });
+}
+
 // ── decorate ──────────────────────────────────────────────────────────────
 
 export default async function decorate(block) {
@@ -506,36 +431,47 @@ export default async function decorate(block) {
   if (customClass) block.classList.add(...customClass.split(/\s+/));
 
   const state = {
-    step: 0,
     photo: null,
     selectedSlot: '',
     signed: false,
-    prescriptions: parseList(config.prescriptions, ['Naproxen 250mg', 'Lisinopril 10mg', 'Levothyroxine 25mg']),
   };
 
-  const progressHolder = document.createElement('div');
-  const stepHolder = document.createElement('div');
-  stepHolder.className = 'ho-step-holder';
-  block.append(progressHolder, stepHolder);
+  const formDef = buildFormDef(config);
+  const formContainer = document.createElement('div');
+  formContainer.className = 'form-container';
 
-  const stepRenderers = [renderStep1, renderStep2, renderStep3, renderStep4];
+  const pre = document.createElement('pre');
+  const code = document.createElement('code');
+  code.textContent = JSON.stringify(formDef);
+  pre.append(code);
+  formContainer.append(pre);
 
-  function renderCurrentStep() {
-    progressHolder.replaceChildren();
-    stepHolder.replaceChildren();
+  block.append(formContainer);
 
-    if (state.step >= stepRenderers.length) {
-      stepHolder.append(renderComplete(config));
-      return;
-    }
+  const formModule = await import('../form/form.js');
+  await formModule.default(formContainer);
 
-    progressHolder.append(buildProgress(state.step));
-    const goNext = () => {
-      state.step += 1;
-      renderCurrentStep();
-    };
-    stepHolder.append(stepRenderers[state.step](state, config, goNext));
-  }
+  setTimeout(() => {
+    const step1 = document.getElementById('ho-step-1');
+    const step2 = document.getElementById('ho-step-2');
+    const step3 = document.getElementById('ho-step-3');
+    const step4 = document.getElementById('ho-step-4');
 
-  renderCurrentStep();
+    step1.classList.add('ho-step', 'ho-step-photo');
+    renderStep1Content(step1, state);
+
+    step2.classList.add('ho-step', 'ho-step-schedule');
+    renderStep2Content(step2, state, config);
+
+    step3.classList.add('ho-step', 'ho-step-transfer');
+    renderStep3Content(step3, state, config);
+
+    step4.classList.add('ho-step', 'ho-step-wellness');
+    const submitBtnWrapper = step4.querySelector('.submit-wrapper');
+    renderStep4Content(step4, config);
+    // the submit button only becomes visible (via CSS) once it's inside the shared wizard-button-wrapper
+    block.querySelector('.wizard-button-wrapper')?.append(submitBtnWrapper);
+
+    setupWizard(block, config, state);
+  }, 100);
 }

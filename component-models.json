@@ -8703,39 +8703,6 @@
     "fields": [
       {
         "component": "text",
-        "name": "doctor-name",
-        "label": "Doctor Name",
-        "value": "Dr. Verma, MD",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "doctor-title",
-        "label": "Doctor Title",
-        "value": "Doctor",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "doctor-rating",
-        "label": "Doctor Rating (1-5)",
-        "value": "5",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "name": "doctor-photo",
-        "label": "Doctor Photo",
-        "multi": false
-      },
-      {
-        "component": "aem-content",
-        "name": "doctor-profile-url",
-        "label": "Doctor Profile URL",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
         "name": "time-slots",
         "label": "Time Slots (comma-separated)",
         "value": "9 AM, 10 AM, 11 AM, 12 AM",
@@ -8752,92 +8719,18 @@
       },
       {
         "component": "text",
-        "name": "document-name",
-        "label": "Prescription Document Name",
-        "value": "PrescriptionTransferForm",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "tos-url",
-        "label": "Terms of Use URL",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "privacy-url",
-        "label": "Privacy Policy URL",
-        "valueType": "string"
+        "name": "mobile-days-shown",
+        "label": "Days Shown (Mobile)",
+        "value": "1",
+        "valueType": "string",
+        "description": "Number of day columns to display at once in mobile view (1-7)"
       },
       {
         "component": "text",
-        "name": "greeting-name",
-        "label": "Wellness Greeting Name",
-        "value": "Sarah",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "steps-count",
-        "label": "Steps Count",
-        "value": "912",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "sleep-hours",
-        "label": "Sleep Hours",
-        "value": "7.15",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "sleep-goal-percent",
-        "label": "Sleep Goal (%)",
-        "value": "82",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "sleep-goal-hours",
-        "label": "Sleep Goal (Hours)",
-        "value": "9",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "heart-bpm",
-        "label": "Heart Rate (bpm)",
-        "value": "71",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "activities",
-        "label": "Planned Activities (comma-separated)",
-        "value": "Cycling: 15 miles, Yoga: 40 min, Jumping Jacks: 20, Meditation: 25 min",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "prescriptions",
-        "label": "Active Prescriptions (comma-separated)",
-        "value": "Naproxen 250mg, Lisinopril 10mg, Levothyroxine 25mg",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "success-heading",
-        "label": "Success Heading",
-        "value": "Onboarding complete",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "success-message",
-        "label": "Success Message",
-        "value": "Thank you for completing the onboarding process. You should receive an email with summary and a link to a mobile app which will assist in your Wellness Program.",
-        "valueType": "string"
+        "name": "sign-iframe-url",
+        "label": "Sign Document Iframe URL",
+        "valueType": "string",
+        "description": "Adobe Sign (or other e-sign) widget URL embedded in the iframe"
       },
       {
         "component": "aem-content",
