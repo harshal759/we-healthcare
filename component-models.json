@@ -131,6 +131,27 @@
         "description": "DAM path of the icon used for the mobile event on this page"
       },
       {
+        "component": "select",
+        "name": "mobilePreset",
+        "label": "Mobile Preset",
+        "value": "",
+        "valueType": "string",
+        "description": "Preset the mobile app applies to this screen",
+        "options": [
+          { "name": "Basic", "value": "basic" },
+          { "name": "Product", "value": "product" },
+          { "name": "Category", "value": "category" },
+          { "name": "User Details", "value": "user-details" },
+          { "name": "Login", "value": "login" },
+          { "name": "Registration", "value": "registration" },
+          { "name": "Web View", "value": "web-view" },
+          { "name": "Cart", "value": "cart" },
+          { "name": "Checkout", "value": "checkout" },
+          { "name": "Review Order", "value": "review-order" },
+          { "name": "Article", "value": "article" }
+        ]
+      },
+      {
         "component": "text",
         "name": "mobilepageeventtype",
         "label": "Mobile Page Event Type",
