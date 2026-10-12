@@ -141,13 +141,13 @@
           { "name": "Basic", "value": "basic" },
           { "name": "Product", "value": "product" },
           { "name": "Category", "value": "category" },
-          { "name": "User Details", "value": "user-details" },
+          { "name": "User Details", "value": "userDetails" },
           { "name": "Login", "value": "login" },
           { "name": "Registration", "value": "registration" },
-          { "name": "Web View", "value": "web-view" },
+          { "name": "Web View", "value": "webView" },
           { "name": "Cart", "value": "cart" },
           { "name": "Checkout", "value": "checkout" },
-          { "name": "Review Order", "value": "review-order" },
+          { "name": "Review Order", "value": "reviewOrder" },
           { "name": "Article", "value": "article" }
         ]
       },
