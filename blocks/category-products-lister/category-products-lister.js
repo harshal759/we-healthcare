@@ -4,6 +4,7 @@ import { dispatchCustomEvent } from "../../scripts/custom-events.js";
 import {
   getEnvironmentValue,
   getHostname,
+  getLanguage,
 } from '../../scripts/utils.js';
 
 const PUBLISH_GRAPHQL_PROXY_ENDPOINT = "https://275323-918sangriatortoise.adobeioruntime.net/api/v1/web/dx-excshell-1/fetch-product-information";
@@ -44,6 +45,7 @@ function coerceConfigScalar(v) {
 
 function getDefaultProductDetailPath(isAuthor) {
   const currentPath = window.location.pathname;
+  if (!isAuthor && currentPath === '/') return `/${getLanguage()}/product`;
   const basePath = currentPath.substring(0, currentPath.lastIndexOf("/"));
   return isAuthor ? `${basePath}/product.html` : `${basePath}/product`;
 }
