@@ -697,6 +697,7 @@ function decorateSections(main) {
       applySectionTextAlignment(section, meta['sec-alignment'] ?? meta['text-alignment']);
     } else {
       // Apply custom class for sections with data-sec-custom-styles set directly (no section-metadata block)
+      applySectionBackgroundImage(section, section.dataset.secBgImage);
       applySectionCustomClass(section, section.dataset.secCustomStyles);
     }
     applySectionItemWidths(section);
@@ -905,6 +906,11 @@ function applySectionBackgroundImage(section, bgImagePath) {
   if (path) {
     section.dataset.secBgImage = path;
     const picture = createOptimizedPicture(path, '', false, [{ width: '2000' }]);
+    const imageUrl = new URL(path, window.location.href);
+    picture.querySelectorAll('source, img').forEach((image) => {
+      const attribute = image.tagName === 'SOURCE' ? 'srcset' : 'src';
+      image.setAttribute(attribute, new URL(image.getAttribute(attribute), imageUrl).href);
+    });
     picture.classList.add('section-bg');
     const img = picture.querySelector('img');
     if (img) img.classList.add('sec-img');
