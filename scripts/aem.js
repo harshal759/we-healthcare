@@ -699,6 +699,8 @@ function decorateSections(main) {
       // Apply custom class for sections with data-sec-custom-styles set directly (no section-metadata block)
       applySectionBackgroundImage(section, section.dataset.secBgImage);
       applySectionCustomClass(section, section.dataset.secCustomStyles);
+      applySectionTextColor(section, section.dataset.secColor);
+      applySectionTextAlignment(section, section.dataset.secAlignment);
     }
     applySectionItemWidths(section);
   });
