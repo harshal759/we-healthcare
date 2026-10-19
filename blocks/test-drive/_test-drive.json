@@ -22,6 +22,11 @@
       "id": "test-drive",
       "fields": [
         {
+          "component": "tab",
+          "label": "Basic",
+          "name": "basic"
+        },
+        {
           "component": "select",
           "name": "variant",
           "label": "Variant",
@@ -131,6 +136,19 @@
           "label": "Button Data Sheet",
           "valueType": "string",
           "description": "AEM sheet path whose key/value rows are sent on submit"
+        },
+        {
+          "component": "tab",
+          "label": "Mobile Specific",
+          "name": "mobileSpecific"
+        },
+        {
+          "component": "text",
+          "name": "mobileFormID",
+          "label": "Mobile Form ID",
+          "value": "",
+          "valueType": "string",
+          "description": "Optional form ID to associate with this form in the mobile app."
         },
         {
           "component": "text",
