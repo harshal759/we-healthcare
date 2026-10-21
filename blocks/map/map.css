@@ -2,6 +2,11 @@
   display: none !important;
 }
 
+.map-wrapper:has(> .map.author-placeholder) {
+  box-sizing: border-box;
+  width: 100%;
+}
+
 .map.author-placeholder {
   display: flex;
   align-items: center;
