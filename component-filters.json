@@ -35,7 +35,6 @@
       "forex",
       "embed-adaptive-form",
       "find-a-doctor",
-      "healthcare-onboarding",
       "flight-search",
       "flights",
       "create-account",
@@ -177,18 +176,6 @@
   },
   {
     "id": "healthcare-schedule-check",
-    "components": []
-  },
-  {
-    "id": "insurance-plan-selection",
-    "components": []
-  },
-  {
-    "id": "medicare-plan-selection",
-    "components": []
-  },
-  {
-    "id": "plan-application",
     "components": []
   }
 ]
