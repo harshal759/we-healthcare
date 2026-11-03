@@ -12179,7 +12179,7 @@
       },
       {
         "component": "text",
-        "name": "submitbuttontext",
+        "name": "button-label",
         "label": "Submit Button Text",
         "value": "Submit",
         "valueType": "string"
@@ -12316,7 +12316,7 @@
       },
       {
         "component": "text",
-        "name": "submitbuttontext",
+        "name": "button-label",
         "label": "Submit Button Text",
         "value": "Submit",
         "valueType": "string"
@@ -12448,7 +12448,7 @@
       },
       {
         "component": "text",
-        "name": "submitbuttontext",
+        "name": "button-label",
         "label": "Submit Button Text",
         "value": "Submit",
         "valueType": "string",
