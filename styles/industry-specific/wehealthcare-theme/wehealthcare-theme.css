@@ -1301,3 +1301,29 @@ body.wehealthcare-theme .action-button .button-container.default-button-link a.b
 body.wehealthcare-theme .action-button .button-container.default-button-dark a.button::after {
   content: unset;
 }
+
+/* Text above the medicare and insurance plan selection forms (the section's custom style). */
+body.wehealthcare-theme .section.plan-selection-content {
+  margin-bottom: 0;
+}
+
+body.wehealthcare-theme .section.plan-selection-content .default-content-wrapper {
+  text-align: center;
+}
+
+body.wehealthcare-theme .section.plan-selection-content h1 {
+  font-size: 36px;
+  font-weight: 900;
+  color: #28272b;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0.67em 0;
+  font-family: 'Adobe Clean Black', sans-serif;
+}
+
+body.wehealthcare-theme .section.plan-selection-content p {
+  font-size: 14px;
+  color: #28272b;
+  line-height: 1.5;
+  margin: 1em 0;
+}
