@@ -1305,6 +1305,12 @@ body.wehealthcare-theme .action-button .button-container.default-button-dark a.b
 /* Text above the medicare and insurance plan selection forms (the section's custom style). */
 body.wehealthcare-theme .section.plan-selection-content {
   margin-bottom: 0;
+  padding: 24px 0 14px;
+}
+
+/* The form section sits straight under the text, on the same background. */
+body.wehealthcare-theme .section.plan-selection-content + .section {
+  margin-top: 0;
 }
 
 body.wehealthcare-theme .section.plan-selection-content .default-content-wrapper {
@@ -1317,7 +1323,7 @@ body.wehealthcare-theme .section.plan-selection-content h1 {
   color: #28272b;
   line-height: 1.5;
   padding: 0;
-  margin: 0.67em 0;
+  margin: 0 0 0.67em;
   font-family: 'Adobe Clean Black', sans-serif;
 }
 
@@ -1325,5 +1331,5 @@ body.wehealthcare-theme .section.plan-selection-content p {
   font-size: 14px;
   color: #28272b;
   line-height: 1.5;
-  margin: 1em 0;
+  margin: 1em 0 0;
 }
