@@ -98,7 +98,7 @@
         },
         {
           "component": "text",
-          "name": "button-label",
+          "name": "submitbuttontext",
           "label": "Submit Button Text",
           "value": "Submit",
           "valueType": "string"
