@@ -21,15 +21,6 @@ main > .section:has(.credit-card-application-form-block) > div {
   background: #fff;
 }
 
-.credit-card-application-form-block .credit-card-application-form-heading {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #111;
-  text-align: center;
-  width: 100%;
-}
-
 .credit-card-application-form-block .credit-card-application-form-subtitle {
   margin: 0 0 0.75rem 0;
   font-size: 0.9375rem;
@@ -42,8 +33,7 @@ main > .section:has(.credit-card-application-form-block) > div {
   min-width: 0;
 }
 
-/* Place progress dots below title/subtitle: wizard uses display:contents so its
-   children (menu, panels, buttons) flow as form children after heading & subtitle */
+/* Wizard children flow as form children via display:contents. */
 .credit-card-application-form-block form {
   display: flex;
   flex-direction: column;

@@ -21,15 +21,6 @@ main > .section:has(.loan-application-form-block) > div {
   background: #fff;
 }
 
-.loan-application-form-block .loan-application-form-heading {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #111;
-  text-align: center;
-  width: 100%;
-}
-
 .loan-application-form-block .loan-application-form-wrapper {
   width: 100%;
   min-width: 0;

@@ -152,11 +152,33 @@
         ]
       },
       {
-        "component": "text",
+        "component": "select",
         "name": "mobilepageeventtype",
         "label": "Mobile Page Event Type",
         "value": "",
-        "valueType": "string"
+        "valueType": "string",
+        "options": [
+          { "name": "None", "value": "" },
+          { "name": "Product View", "value": "commerce.productViews" },
+          { "name": "Category View", "value": "commerce.categoryViews" },
+          { "name": "Custom", "value": "custom" }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "customEvent",
+        "label": "Mobile Custom Page Event",
+        "value": "",
+        "valueType": "string",
+        "description": "Event name sent when this page opens, e.g. navigation.open",
+        "condition": {
+          "==": [
+            {
+              "var": "mobilepageeventtype"
+            },
+            "custom"
+          ]
+        }
       },
       {
         "component": "aem-tag",
@@ -947,12 +969,30 @@
         "name": "mobileSpecific"
       },
       {
+        "component": "boolean",
+        "name": "fullHeight",
+        "label": "Full height (100%)",
+        "valueType": "boolean"
+      },
+      {
+        "component": "boolean",
+        "name": "showBorder",
+        "label": "Show border",
+        "valueType": "boolean"
+      },
+      {
+        "component": "boolean",
+        "name": "itemsFillHeight",
+        "label": "Equally sized items",
+        "valueType": "boolean"
+      },
+      {
         "component": "text",
         "name": "custommobilestyle",
         "label": "Custom Mobile Style",
         "valueType": "string[]",
         "multi": true,
-        "description": "One style per row, as key:value (e.g. width:250, padding:0)"
+        "description": "One style per row, as key:value (e.g. gap:16, padding:16)"
       }
     ]
   },
@@ -1190,6 +1230,42 @@
         ]
       },
       {
+        "component": "boolean",
+        "name": "mobileshowbutton",
+        "label": "Show Button",
+        "value": "false",
+        "valueType": "boolean",
+        "description": "Show a button on the card. Its text and link come from the first link in the card text."
+      },
+      {
+        "component": "select",
+        "name": "mobilebuttonvariant",
+        "label": "Button Variant",
+        "options": [
+          {
+            "name": "Primary",
+            "value": "contained"
+          },
+          {
+            "name": "Secondary",
+            "value": "contained-tonal"
+          },
+          {
+            "name": "Outlined",
+            "value": "outlined"
+          },
+          {
+            "name": "Quiet",
+            "value": "text"
+          },
+          {
+            "name": "Elevated",
+            "value": "elevated"
+          }
+        ],
+        "description": "Leave empty to follow the CTA Style."
+      },
+      {
         "component": "text",
         "name": "custommobilestyle",
         "label": "Custom Mobile Style",
@@ -1334,6 +1410,14 @@
       },
       {
         "component": "text",
+        "name": "mobileFormID",
+        "label": "Mobile Form ID",
+        "value": "",
+        "valueType": "string",
+        "description": "Optional form ID to associate with this form in the mobile app."
+      },
+      {
+        "component": "text",
         "name": "mobilebuttoneventtype",
         "label": "Mobile Button Event Type",
         "value": "",
@@ -1475,6 +1559,11 @@
     "id": "product-card",
     "fields": [
       {
+        "component": "tab",
+        "label": "Basic",
+        "name": "basic"
+      },
+      {
         "component": "aem-content",
         "name": "contentFragmentFolder",
         "label": "Content Fragment Folder",
@@ -1587,11 +1676,99 @@
         "description": "Space-separated class names to add to the block"
       },
       {
-        "component": "text",
-        "name": "mobilebuttoneventtype",
-        "label": "Mobile Button Event Type",
+        "component": "tab",
+        "label": "Mobile Specific",
+        "name": "mobileSpecific"
+      },
+      {
+        "component": "select",
+        "name": "mobilecardstyle",
+        "label": "Card Type",
+        "valueType": "string",
+        "value": "overlay",
+        "options": [
+          {
+            "name": "Image and text in one line",
+            "value": "image-text-one-line"
+          },
+          {
+            "name": "Image and text overlay",
+            "value": "overlay"
+          },
+          {
+            "name": "Image and text below",
+            "value": "stacked"
+          },
+          {
+            "name": "Image partially overlayed",
+            "value": "partial-overlay"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "mobileimagestyle",
+        "label": "Image Resize Mode",
+        "valueType": "string",
         "value": "",
-        "valueType": "string"
+        "options": [
+          {
+            "name": "Contain",
+            "value": "contain"
+          },
+          {
+            "name": "Cover",
+            "value": "cover"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "name": "mobileshowbutton",
+        "label": "Show Button",
+        "value": "false",
+        "valueType": "boolean",
+        "description": "Show a button on the card. Its text and link come from Button Text and Button Link."
+      },
+      {
+        "component": "select",
+        "name": "mobilebuttonvariant",
+        "label": "Button Variant",
+        "condition": {
+          "==": [{ "var": "mobileshowbutton" }, true]
+        },
+        "options": [
+          {
+            "name": "Primary",
+            "value": "contained"
+          },
+          {
+            "name": "Secondary",
+            "value": "contained-tonal"
+          },
+          {
+            "name": "Outlined",
+            "value": "outlined"
+          },
+          {
+            "name": "Quiet",
+            "value": "text"
+          },
+          {
+            "name": "Elevated",
+            "value": "elevated"
+          }
+        ],
+        "description": "Leave empty to follow the CTA Style."
+      },
+      {
+        "component": "text",
+        "name": "custommobilestyle",
+        "label": "Custom Mobile Style",
+        "value": "",
+        "valueType": "string[]",
+        "description": "Custom styles for the card on mobile",
+        "multi": true
       }
     ]
   },
@@ -1600,15 +1777,15 @@
     "fields": [
       {
         "component": "text",
-        "name": "form-title",
-        "label": "Form Title",
+        "name": "wizard-title",
+        "label": "Wizard Title",
         "valueType": "string",
-        "description": "Heading displayed at the top of the form and passed in data layer as wizard title"
+        "description": "Passed in the data layer as the wizard title. It is not displayed on the page."
       },
       {
         "component": "text",
-        "name": "form-name",
-        "label": "Form Name",
+        "name": "wizard-name",
+        "label": "Wizard name",
         "valueType": "string",
         "description": "Name of the form passed in the data layer"
       },
@@ -1764,15 +1941,15 @@
       },
       {
         "component": "text",
-        "name": "form-title",
-        "label": "Form Title",
+        "name": "wizard-title",
+        "label": "Wizard Title",
         "valueType": "string",
-        "description": "Heading displayed at the top of the form and passed in data layer as wizard title"
+        "description": "Passed in the data layer as the wizard title. It is not displayed on the page."
       },
       {
         "component": "text",
-        "name": "form-name",
-        "label": "Form Name",
+        "name": "wizard-name",
+        "label": "Wizard name",
         "valueType": "string",
         "description": "Name of the form passed in the data layer"
       },
@@ -2379,15 +2556,15 @@
     "fields": [
       {
         "component": "text",
-        "name": "form-title",
-        "label": "Form Title",
+        "name": "wizard-title",
+        "label": "Wizard Title",
         "valueType": "string",
-        "description": "Heading displayed at the top of the form and passed in data layer as wizard title"
+        "description": "Passed in the data layer as the wizard title. It is not displayed on the page."
       },
       {
         "component": "text",
-        "name": "form-name",
-        "label": "Form Name",
+        "name": "wizard-name",
+        "label": "Wizard name",
         "valueType": "string",
         "description": "Name of the form passed in the data layer"
       },
@@ -2448,9 +2625,8 @@
     "fields": [
       {
         "component": "text",
-        "name": "title",
-        "label": "Title",
-        "value": "Life Insurance",
+        "name": "formtitle",
+        "label": "Form Title",
         "valueType": "string",
         "description": "Main heading of the form"
       },
@@ -2502,6 +2678,18 @@
   {
     "id": "add-external",
     "fields": [
+      {
+        "component": "tab",
+        "label": "Basic",
+        "name": "basic"
+      },
+      {
+        "component": "text",
+        "name": "form-title",
+        "label": "Form Title",
+        "valueType": "string",
+        "description": "Heading displayed at the top of the form. Leave empty to keep the default title."
+      },
       {
         "component": "select",
         "name": "variant",
@@ -2557,11 +2745,25 @@
         "description": "Space-separated class names to add to the block"
       },
       {
+        "component": "tab",
+        "label": "Mobile Specific",
+        "name": "mobileSpecific"
+      },
+      {
         "component": "text",
         "name": "mobilebuttoneventtype",
         "label": "Mobile Button Event Type",
         "value": "",
         "valueType": "string"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "custommobilestyle",
+        "label": "Custom Mobile Style",
+        "value": "",
+        "multi": true,
+        "description": "Custom styles for the form on mobile"
       }
     ]
   },
@@ -2572,6 +2774,13 @@
         "component": "tab",
         "label": "Basic",
         "name": "basic"
+      },
+      {
+        "component": "text",
+        "name": "form-title",
+        "label": "Form Title",
+        "valueType": "string",
+        "description": "Heading displayed at the top of the form. Leave empty to keep the default title."
       },
       {
         "component": "text",
@@ -2664,6 +2873,13 @@
       },
       {
         "component": "text",
+        "name": "form-title",
+        "label": "Form Title",
+        "valueType": "string",
+        "description": "Heading displayed at the top of the form. Leave empty to keep the default title."
+      },
+      {
+        "component": "text",
         "name": "button-label",
         "label": "Submit Label",
         "value": "",
@@ -2750,6 +2966,13 @@
         "component": "tab",
         "label": "Basic",
         "name": "basic"
+      },
+      {
+        "component": "text",
+        "name": "form-title",
+        "label": "Form Title",
+        "valueType": "string",
+        "description": "Heading displayed at the top of the form. Leave empty to keep the default title."
       },
       {
         "component": "text",
@@ -3548,6 +3771,23 @@
             "value": "horizontal"
           }
         ]
+      },
+      {
+        "component": "boolean",
+        "name": "showBorder",
+        "label": "Show Border",
+        "value": "false",
+        "valueType": "boolean",
+        "description": "Draw a border around this column in the mobile app"
+      },
+      {
+        "component": "text",
+        "name": "custommobilestyle",
+        "label": "Custom Mobile Style",
+        "value": "",
+        "valueType": "string[]",
+        "multi": true,
+        "description": "One style per row, as key:value (e.g. gap:16, padding:16), applied to this column in the mobile app"
       }
     ]
   },
@@ -3743,6 +3983,18 @@
     "id": "transfer-funds",
     "fields": [
       {
+        "component": "tab",
+        "label": "Basic",
+        "name": "basic"
+      },
+      {
+        "component": "text",
+        "name": "form-title",
+        "label": "Form Title",
+        "valueType": "string",
+        "description": "Heading displayed at the top of the form. Leave empty to keep the default title."
+      },
+      {
         "component": "aem-content",
         "valueType": "string",
         "name": "redirectUrl",
@@ -3786,17 +4038,43 @@
         "description": "Space-separated class names to add to the block"
       },
       {
+        "component": "tab",
+        "label": "Mobile Specific",
+        "name": "mobileSpecific"
+      },
+      {
         "component": "text",
         "name": "mobilebuttoneventtype",
         "label": "Mobile Button Event Type",
         "value": "",
         "valueType": "string"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "custommobilestyle",
+        "label": "Custom Mobile Style",
+        "value": "",
+        "multi": true,
+        "description": "Custom styles for the form on mobile"
       }
     ]
   },
   {
     "id": "set-up-auto-save",
     "fields": [
+      {
+        "component": "tab",
+        "label": "Basic",
+        "name": "basic"
+      },
+      {
+        "component": "text",
+        "name": "form-title",
+        "label": "Form Title",
+        "valueType": "string",
+        "description": "Heading displayed at the top of the form. Leave empty to keep the default title."
+      },
       {
         "component": "aem-content",
         "valueType": "string",
@@ -3841,11 +4119,25 @@
         "description": "Space-separated class names to add to the block"
       },
       {
+        "component": "tab",
+        "label": "Mobile Specific",
+        "name": "mobileSpecific"
+      },
+      {
         "component": "text",
         "name": "mobilebuttoneventtype",
         "label": "Mobile Button Event Type",
         "value": "",
         "valueType": "string"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "custommobilestyle",
+        "label": "Custom Mobile Style",
+        "value": "",
+        "multi": true,
+        "description": "Custom styles for the form on mobile"
       }
     ]
   },
@@ -4165,66 +4457,6 @@
         "name": "mobileSpecific"
       },
       {
-        "component": "text",
-        "name": "mobilebuttoneventtype",
-        "label": "Mobile Button Event Type",
-        "value": "",
-        "valueType": "string"
-      },
-      {
-        "component": "select",
-        "name": "mobileimageresize",
-        "label": "Image Resize Mode",
-        "valueType": "string",
-        "value": "cover",
-        "options": [
-          {
-            "name": "Contain",
-            "value": "contain"
-          },
-          {
-            "name": "Cover",
-            "value": "cover"
-          }
-        ]
-      },
-      {
-        "component": "boolean",
-        "name": "mobileshowbutton",
-        "label": "Show Button",
-        "value": "true",
-        "valueType": "boolean"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "custommobilestyle",
-        "label": "Custom Mobile Style",
-        "value": "",
-        "multi": true,
-        "description": "Custom styles for the hero on mobile"
-      },
-      {
-        "component": "select",
-        "name": "mobilehorizontalalignment",
-        "label": "Horizontal Alignment",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Left",
-            "value": "left"
-          },
-          {
-            "name": "Center",
-            "value": "center"
-          },
-          {
-            "name": "Right",
-            "value": "right"
-          }
-        ]
-      },
-      {
         "component": "select",
         "name": "mobilecardstyle",
         "label": "Card Type",
@@ -4257,12 +4489,65 @@
         ]
       },
       {
+        "component": "select",
+        "name": "mobileimageresize",
+        "label": "Image Resize Mode",
+        "valueType": "string",
+        "value": "cover",
+        "options": [
+          {
+            "name": "Contain",
+            "value": "contain"
+          },
+          {
+            "name": "Cover",
+            "value": "cover"
+          }
+        ]
+      },
+      {
         "component": "number",
         "name": "mobileopacity",
         "label": "Overlay Opacity",
         "valueType": "number",
         "valueFormat": "double",
         "description": "Darkness of the overlay behind the hero text on mobile, as a decimal from 0 (none) to 1 (solid), e.g. 0.5. Leave empty to follow the Text Overlay switch."
+      },
+      {
+        "component": "select",
+        "name": "mobilehorizontalalignment",
+        "label": "Text Horizontal Alignment",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Left",
+            "value": "left"
+          },
+          {
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "Right",
+            "value": "right"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "name": "mobileshowbutton",
+        "label": "Show Button",
+        "value": "true",
+        "valueType": "boolean"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "custommobilestyle",
+        "label": "Custom Mobile Style",
+        "value": "",
+        "multi": true,
+        "description": "Custom styles for the hero on mobile"
       }
     ]
   },
@@ -4478,12 +4763,32 @@
         "value": "",
         "valueType": "string",
         "description": "Page to open in the mobile app after successful form submission. Leave empty to use the existing redirect default."
+      },
+      {
+        "component": "text",
+        "name": "custommobilestyle",
+        "label": "Custom Mobile Style",
+        "valueType": "string[]",
+        "multi": true,
+        "description": "One style per row, as key:value (e.g. width:250, padding:0)"
       }
     ]
   },
   {
     "id": "child-account-application",
     "fields": [
+      {
+        "component": "tab",
+        "label": "Basic",
+        "name": "basic"
+      },
+      {
+        "component": "text",
+        "name": "form-title",
+        "label": "Form Title",
+        "valueType": "string",
+        "description": "Heading displayed at the top of the form. Leave empty to keep the default title."
+      },
       {
         "component": "aem-content",
         "valueType": "string",
@@ -4528,17 +4833,43 @@
         "description": "Space-separated class names to add to the block"
       },
       {
+        "component": "tab",
+        "label": "Mobile Specific",
+        "name": "mobileSpecific"
+      },
+      {
         "component": "text",
         "name": "mobilebuttoneventtype",
         "label": "Mobile Button Event Type",
         "value": "",
         "valueType": "string"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "custommobilestyle",
+        "label": "Custom Mobile Style",
+        "value": "",
+        "multi": true,
+        "description": "Custom styles for the form on mobile"
       }
     ]
   },
   {
     "id": "name-change-request",
     "fields": [
+      {
+        "component": "tab",
+        "label": "Basic",
+        "name": "basic"
+      },
+      {
+        "component": "text",
+        "name": "form-title",
+        "label": "Form Title",
+        "valueType": "string",
+        "description": "Heading displayed at the top of the form. Leave empty to keep the default title."
+      },
       {
         "component": "aem-content",
         "valueType": "string",
@@ -4583,11 +4914,25 @@
         "description": "Space-separated class names to add to the block"
       },
       {
+        "component": "tab",
+        "label": "Mobile Specific",
+        "name": "mobileSpecific"
+      },
+      {
         "component": "text",
         "name": "mobilebuttoneventtype",
         "label": "Mobile Button Event Type",
         "value": "",
         "valueType": "string"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "custommobilestyle",
+        "label": "Custom Mobile Style",
+        "value": "",
+        "multi": true,
+        "description": "Custom styles for the form on mobile"
       }
     ]
   },
@@ -10868,80 +11213,14 @@
         "label": "Render as List",
         "value": "false",
         "valueType": "boolean",
-        "description": "Render the cards in this block as a single list instead of individual cards"
+        "description": "Render cards as a single mobile list only when their redirection links resolve to valid app screens or products. Cards without valid screen links are skipped in screen lists. If no valid list can be built, individual cards are exported."
       },
       {
-        "component": "select",
-        "name": "mobilelayout",
-        "label": "Layout",
+        "component": "container",
+        "name": "mobileCardsLayoutProperties",
+        "label": "List Layout & Style",
         "valueType": "string",
-        "value": "horizontal",
-        "options": [
-          {
-            "name": "Vertical/Grid",
-            "value": "vertical/grid"
-          },
-          {
-            "name": "Horizontal",
-            "value": "horizontal"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "mobilesort",
-        "label": "Sort by",
-        "valueType": "string",
-        "value": "none",
-        "options": [
-          {
-            "name": "Name (A-Z)",
-            "value": "alphabetical"
-          },
-          {
-            "name": "Name (Z-A)",
-            "value": "alphabetical-reverse"
-          },
-          {
-            "name": "None",
-            "value": "none"
-          }
-        ]
-      },
-      {
-        "component": "text",
-        "valueType": "string[]",
-        "name": "custommobilestyle",
-        "label": "Custom Mobile Style",
-        "value": "",
-        "multi": true,
-        "description": "Custom styles for the cards list on mobile"
-      },
-      {
-        "component": "select",
-        "name": "mobileItemRenderer",
-        "label": "Item variant",
-        "valueType": "string",
-        "value": "overlay",
-        "description": "Item variant. Options are filtered by the current layout value.",
-        "options": [
-          {
-            "name": "Image and text in one line (grid only)",
-            "value": "image-text-one-line"
-          },
-          {
-            "name": "Image and text overlay (grid + horizontal)",
-            "value": "overlay"
-          },
-          {
-            "name": "Image and text below (grid + horizontal)",
-            "value": "stacked"
-          },
-          {
-            "name": "Single Image (grid + horizontal)",
-            "value": "image"
-          }
-        ],
+        "collapsible": true,
         "condition": {
           "==": [
             {
@@ -10949,20 +11228,13 @@
             },
             true
           ]
-        }
-      },
-      {
-        "component": "number",
-        "name": "mobileItemsInRow",
-        "label": "Items in row",
-        "value": 1,
-        "valueType": "number",
-        "min": 1,
-        "max": 12,
-        "description": "Number of items per row (1-12). Shown only when Layout is Vertical/Grid.",
-        "condition": {
-          "and": [
-            {
+        },
+        "fields": [
+          {
+            "component": "select",
+            "name": "mobilelayout",
+            "label": "Layout",
+            "condition": {
               "==": [
                 {
                   "var": "mobilerenderaslist"
@@ -10970,50 +11242,73 @@
                 true
               ]
             },
-            {
-              "==": [
-                {
-                  "var": "mobilelayout"
-                },
-                "vertical/grid"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "name": "mobileImageResize",
-        "label": "Image resize mode",
-        "valueType": "string",
-        "value": "cover",
-        "options": [
-          {
-            "name": "Contain",
-            "value": "contain"
+            "valueType": "string",
+            "value": "horizontal",
+            "options": [
+              {
+                "name": "Vertical/Grid",
+                "value": "vertical/grid"
+              },
+              {
+                "name": "Horizontal",
+                "value": "horizontal"
+              }
+            ]
           },
           {
-            "name": "Cover",
-            "value": "cover"
+            "component": "select",
+            "name": "mobilesort",
+            "label": "Sort by",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobilerenderaslist"
+                },
+                true
+              ]
+            },
+            "valueType": "string",
+            "value": "none",
+            "options": [
+              {
+                "name": "Name (A-Z)",
+                "value": "alphabetical"
+              },
+              {
+                "name": "Name (Z-A)",
+                "value": "alphabetical-reverse"
+              },
+              {
+                "name": "None",
+                "value": "none"
+              }
+            ]
+          },
+          {
+            "component": "text",
+            "valueType": "string[]",
+            "name": "custommobilestyle",
+            "label": "Custom Mobile Style",
+            "value": "",
+            "multi": true,
+            "description": "Custom styles for the cards list on mobile",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobilerenderaslist"
+                },
+                true
+              ]
+            }
           }
-        ],
-        "condition": {
-          "==": [
-            {
-              "var": "mobilerenderaslist"
-            },
-            true
-          ]
-        }
+        ]
       },
       {
-        "component": "number",
-        "name": "limit",
-        "label": "Item Limit",
-        "valueType": "number",
-        "value": 0,
-        "min": 0,
-        "description": "Maximum number of items to display in the list. Set to 0 to show all.",
+        "component": "container",
+        "name": "mobileCardsItemProperties",
+        "label": "Item Appearance",
+        "valueType": "string",
+        "collapsible": true,
         "condition": {
           "==": [
             {
@@ -11021,15 +11316,154 @@
             },
             true
           ]
-        }
+        },
+        "fields": [
+          {
+            "component": "select",
+            "name": "mobileItemRenderer",
+            "label": "Item variant",
+            "valueType": "string",
+            "value": "overlay",
+            "description": "Item variant. Options are filtered by the current layout value.",
+            "options": [
+              {
+                "name": "Image and text in one line (grid only)",
+                "value": "image-text-one-line"
+              },
+              {
+                "name": "Image and text overlay (grid + horizontal)",
+                "value": "overlay"
+              },
+              {
+                "name": "Image and text below (grid + horizontal)",
+                "value": "stacked"
+              },
+              {
+                "name": "Single Image (grid + horizontal)",
+                "value": "image"
+              }
+            ],
+            "condition": {
+              "==": [
+                {
+                  "var": "mobilerenderaslist"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "number",
+            "name": "mobileItemsInRow",
+            "label": "Items in row",
+            "value": 1,
+            "valueType": "number",
+            "min": 1,
+            "max": 12,
+            "description": "Number of items per row (1-12). Shown only when Layout is Vertical/Grid.",
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobilerenderaslist"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobilelayout"
+                    },
+                    "vertical/grid"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobileImageResize",
+            "label": "Image resize mode",
+            "valueType": "string",
+            "value": "cover",
+            "options": [
+              {
+                "name": "Contain",
+                "value": "contain"
+              },
+              {
+                "name": "Cover",
+                "value": "cover"
+              }
+            ],
+            "condition": {
+              "==": [
+                {
+                  "var": "mobilerenderaslist"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "number",
+            "name": "limit",
+            "label": "Item Limit",
+            "valueType": "number",
+            "value": 0,
+            "min": 0,
+            "description": "Maximum number of items to display in the list. Set to 0 to show all.",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobilerenderaslist"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "text",
+            "name": "mobileimagewidth",
+            "label": "Image width",
+            "value": "",
+            "valueType": "number",
+            "description": "Image width on mobile, in pixels. Leave empty for the default.",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobilerenderaslist"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "text",
+            "name": "mobileitemheight",
+            "label": "Item height",
+            "value": "",
+            "valueType": "number",
+            "description": "Item height on mobile, in pixels. Leave empty for the default.",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobilerenderaslist"
+                },
+                true
+              ]
+            }
+          }
+        ]
       },
       {
-        "component": "text",
-        "name": "mobileimagewidth",
-        "label": "Image width",
-        "value": "",
-        "valueType": "number",
-        "description": "Image width on mobile, in pixels. Leave empty for the default.",
+        "component": "container",
+        "name": "mobileCardsTypographyProperties",
+        "label": "Typography",
+        "valueType": "string",
+        "collapsible": true,
         "condition": {
           "==": [
             {
@@ -11037,23 +11471,199 @@
             },
             true
           ]
-        }
-      },
-      {
-        "component": "text",
-        "name": "mobileitemheight",
-        "label": "Item height",
-        "value": "",
-        "valueType": "number",
-        "description": "Item height on mobile, in pixels. Leave empty for the default.",
-        "condition": {
-          "==": [
-            {
-              "var": "mobilerenderaslist"
-            },
-            true
-          ]
-        }
+        },
+        "fields": [
+          {
+            "component": "select",
+            "name": "mobiletitlesize",
+            "label": "Title size",
+            "valueType": "string",
+            "value": "",
+            "description": "Leave on Default to use the app's size for the item variant.",
+            "options": [
+              {
+                "name": "Default",
+                "value": ""
+              },
+              {
+                "name": "X-Small",
+                "value": "labelSmall"
+              },
+              {
+                "name": "Small",
+                "value": "labelMedium"
+              },
+              {
+                "name": "Medium",
+                "value": "labelLarge"
+              },
+              {
+                "name": "Large",
+                "value": "titleMedium"
+              },
+              {
+                "name": "X-Large",
+                "value": "titleLarge"
+              }
+            ],
+            "condition": {
+              "==": [
+                {
+                  "var": "mobilerenderaslist"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobiletitlefontweight",
+            "label": "Title font weight",
+            "valueType": "string",
+            "value": "regular",
+            "options": [
+              {
+                "name": "Light",
+                "value": "light"
+              },
+              {
+                "name": "Regular",
+                "value": "regular"
+              },
+              {
+                "name": "Bold",
+                "value": "bold"
+              },
+              {
+                "name": "Black",
+                "value": "black"
+              }
+            ],
+            "condition": {
+              "==": [
+                {
+                  "var": "mobilerenderaslist"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "boolean",
+            "name": "mobilehidesubtitle",
+            "label": "Hide subtitle",
+            "value": "false",
+            "valueType": "boolean",
+            "description": "Hide the subtitle of each list item",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobilerenderaslist"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobilesubtitlesize",
+            "label": "Subtitle size",
+            "valueType": "string",
+            "value": "",
+            "description": "Leave on Default to use the app's size for the item variant.",
+            "options": [
+              {
+                "name": "Default",
+                "value": ""
+              },
+              {
+                "name": "X-Small",
+                "value": "labelSmall"
+              },
+              {
+                "name": "Small",
+                "value": "labelMedium"
+              },
+              {
+                "name": "Medium",
+                "value": "labelLarge"
+              },
+              {
+                "name": "Large",
+                "value": "titleMedium"
+              },
+              {
+                "name": "X-Large",
+                "value": "titleLarge"
+              }
+            ],
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobilerenderaslist"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "!=": [
+                    {
+                      "var": "mobilehidesubtitle"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobilesubtitlefontweight",
+            "label": "Subtitle font weight",
+            "valueType": "string",
+            "value": "light",
+            "options": [
+              {
+                "name": "Light",
+                "value": "light"
+              },
+              {
+                "name": "Regular",
+                "value": "regular"
+              },
+              {
+                "name": "Bold",
+                "value": "bold"
+              },
+              {
+                "name": "Black",
+                "value": "black"
+              }
+            ],
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobilerenderaslist"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "!=": [
+                    {
+                      "var": "mobilehidesubtitle"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          }
+        ]
       }
     ]
   },
@@ -11238,18 +11848,22 @@
       },
       {
         "component": "select",
-        "name": "mobileimagestyle",
-        "label": "Image Resize Mode",
+        "name": "mobilesort",
+        "label": "Sort by",
         "valueType": "string",
-        "value": "contain",
+        "value": "none",
         "options": [
           {
-            "name": "Contain",
-            "value": "contain"
+            "name": "Name (A-Z)",
+            "value": "alphabetical"
           },
           {
-            "name": "Cover",
-            "value": "cover"
+            "name": "Name (Z-A)",
+            "value": "alphabetical-reverse"
+          },
+          {
+            "name": "None",
+            "value": "none"
           }
         ]
       },
@@ -11288,6 +11902,23 @@
         "description": "Number of items per row (1-12). Applies only when Layout is Vertical/Grid"
       },
       {
+        "component": "select",
+        "name": "mobileimagestyle",
+        "label": "Image Resize Mode",
+        "valueType": "string",
+        "value": "contain",
+        "options": [
+          {
+            "name": "Contain",
+            "value": "contain"
+          },
+          {
+            "name": "Cover",
+            "value": "cover"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "mobileimagewidth",
         "label": "Image width",
@@ -11305,32 +11936,81 @@
       },
       {
         "component": "select",
-        "name": "mobilesort",
-        "label": "Sort by",
+        "name": "mobiletitlesize",
+        "label": "Title size",
         "valueType": "string",
-        "value": "none",
+        "value": "",
+        "description": "Leave on Default to use the app's size for the item variant.",
         "options": [
-          {
-            "name": "Name (A-Z)",
-            "value": "alphabetical"
-          },
-          {
-            "name": "Name (Z-A)",
-            "value": "alphabetical-reverse"
-          },
-          {
-            "name": "None",
-            "value": "none"
-          }
+          { "name": "Default", "value": "" },
+          { "name": "X-Small", "value": "labelSmall" },
+          { "name": "Small", "value": "labelMedium" },
+          { "name": "Medium", "value": "labelLarge" },
+          { "name": "Large", "value": "titleMedium" },
+          { "name": "X-Large", "value": "titleLarge" }
         ]
       },
       {
-        "component": "text",
-        "name": "mobilecategoryfilter",
-        "label": "Category filter",
-        "value": "",
+        "component": "select",
+        "name": "mobiletitlefontweight",
+        "label": "Title font weight",
         "valueType": "string",
-        "description": "Categories to show, comma-separated (e.g. Electric or Hybrid, Fuel). Leave empty to use the categories of the products in the folder"
+        "value": "regular",
+        "options": [
+          { "name": "Light", "value": "light" },
+          { "name": "Regular", "value": "regular" },
+          { "name": "Bold", "value": "bold" },
+          { "name": "Black", "value": "black" }
+        ]
+      },
+      {
+        "component": "boolean",
+        "name": "mobilehidesubtitle",
+        "label": "Hide subtitle",
+        "value": "false",
+        "valueType": "boolean",
+        "description": "Hide the subtitle of each list item"
+      },
+      {
+        "component": "select",
+        "name": "mobilesubtitlesize",
+        "label": "Subtitle size",
+        "valueType": "string",
+        "value": "",
+        "description": "Leave on Default to use the app's size for the item variant.",
+        "options": [
+          { "name": "Default", "value": "" },
+          { "name": "X-Small", "value": "labelSmall" },
+          { "name": "Small", "value": "labelMedium" },
+          { "name": "Medium", "value": "labelLarge" },
+          { "name": "Large", "value": "titleMedium" },
+          { "name": "X-Large", "value": "titleLarge" }
+        ],
+        "condition": {
+          "!=": [
+            { "var": "mobilehidesubtitle" },
+            true
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "name": "mobilesubtitlefontweight",
+        "label": "Subtitle font weight",
+        "valueType": "string",
+        "value": "light",
+        "options": [
+          { "name": "Light", "value": "light" },
+          { "name": "Regular", "value": "regular" },
+          { "name": "Bold", "value": "bold" },
+          { "name": "Black", "value": "black" }
+        ],
+        "condition": {
+          "!=": [
+            { "var": "mobilehidesubtitle" },
+            true
+          ]
+        }
       },
       {
         "component": "text",
@@ -11507,54 +12187,628 @@
         "description": "Export separate product image, title, price, add-to-cart and description components instead of a product card in the mobile app."
       },
       {
-        "component": "boolean",
-        "name": "mobileappshowproductimage",
-        "label": "Enable Product Image",
-        "value": "true",
-        "valueType": "boolean"
-      },
-      {
-        "component": "boolean",
-        "name": "mobileappshowproducttitle",
-        "label": "Enable Product Title",
-        "value": "true",
-        "valueType": "boolean"
-      },
-      {
-        "component": "boolean",
-        "name": "mobileappshowproductprice",
-        "label": "Enable Product Price",
-        "value": "true",
-        "valueType": "boolean"
-      },
-      {
-        "component": "boolean",
-        "name": "mobileappshowproductaddtocartbutton",
-        "label": "Enable Add to Cart Button",
-        "value": "true",
-        "valueType": "boolean"
-      },
-      {
-        "component": "boolean",
-        "name": "mobileappshowproductdescription",
-        "label": "Enable Product Description",
-        "value": "true",
-        "valueType": "boolean"
-      },
-      {
-        "component": "select",
-        "name": "mobileimageresize",
-        "label": "Image Resize Mode",
+        "component": "container",
+        "label": "Product Image",
+        "name": "mobileProductImageProperties",
         "valueType": "string",
-        "value": "cover",
-        "options": [
+        "collapsible": true,
+        "fields": [
           {
-            "name": "Contain",
-            "value": "contain"
+            "component": "boolean",
+            "name": "mobileappshowproductimage",
+            "label": "Enable Product Image",
+            "value": "false",
+            "valueType": "boolean",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobileappcustomproductdetails"
+                },
+                true
+              ]
+            }
           },
           {
-            "name": "Cover",
-            "value": "cover"
+            "component": "boolean",
+            "name": "mobileappproductimagefullwidth",
+            "label": "Full Width",
+            "value": "true",
+            "valueType": "boolean",
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproductimage"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobileimageresize",
+            "label": "Image resize mode",
+            "valueType": "string",
+            "value": "cover",
+            "options": [
+              {
+                "name": "Contain",
+                "value": "contain"
+              },
+              {
+                "name": "Cover",
+                "value": "cover"
+              }
+            ],
+            "condition": {
+              "or": [
+                {
+                  "!=": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproductimage"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "component": "text",
+            "name": "mobileappproductimagestyle",
+            "label": "Custom Mobile Style",
+            "valueType": "string[]",
+            "multi": true,
+            "description": "One style per row, as key:value (e.g. marginTop:8, padding:8)",
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproductimage"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "Product Title",
+        "name": "mobileProductTitleProperties",
+        "valueType": "string",
+        "collapsible": true,
+        "condition": {
+          "==": [
+            {
+              "var": "mobileappcustomproductdetails"
+            },
+            true
+          ]
+        },
+        "fields": [
+          {
+            "component": "boolean",
+            "name": "mobileappshowproducttitle",
+            "label": "Enable Product Title",
+            "value": "false",
+            "valueType": "boolean",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobileappcustomproductdetails"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobileappproducttitlesize",
+            "label": "Size",
+            "valueType": "string",
+            "value": "medium",
+            "options": [
+              {
+                "name": "X Small",
+                "value": "xsmall"
+              },
+              {
+                "name": "Small",
+                "value": "small"
+              },
+              {
+                "name": "Medium",
+                "value": "medium"
+              },
+              {
+                "name": "Large",
+                "value": "large"
+              },
+              {
+                "name": "X Large",
+                "value": "xlarge"
+              }
+            ],
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproducttitle"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobileappproducttitleweight",
+            "label": "Weight",
+            "valueType": "string",
+            "value": "bold",
+            "options": [
+              {
+                "name": "Light",
+                "value": "light"
+              },
+              {
+                "name": "Regular",
+                "value": "regular"
+              },
+              {
+                "name": "Bold",
+                "value": "bold"
+              },
+              {
+                "name": "Black",
+                "value": "black"
+              }
+            ],
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproducttitle"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobileappproducttitlealignment",
+            "label": "Text Alignment",
+            "valueType": "string",
+            "value": "left",
+            "options": [
+              {
+                "name": "Left",
+                "value": "left"
+              },
+              {
+                "name": "Center",
+                "value": "center"
+              },
+              {
+                "name": "Right",
+                "value": "right"
+              }
+            ],
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproducttitle"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "component": "text",
+            "name": "mobileappproducttitlestyle",
+            "label": "Custom Mobile Style",
+            "valueType": "string[]",
+            "multi": true,
+            "description": "One style per row, as key:value (e.g. marginTop:8, padding:8)",
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproducttitle"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "Product Price",
+        "name": "mobileProductPriceProperties",
+        "valueType": "string",
+        "collapsible": true,
+        "condition": {
+          "==": [
+            {
+              "var": "mobileappcustomproductdetails"
+            },
+            true
+          ]
+        },
+        "fields": [
+          {
+            "component": "boolean",
+            "name": "mobileappshowproductprice",
+            "label": "Enable Product Price",
+            "value": "false",
+            "valueType": "boolean",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobileappcustomproductdetails"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "text",
+            "name": "mobileappproductpricestyle",
+            "label": "Custom Mobile Style",
+            "valueType": "string[]",
+            "multi": true,
+            "description": "One style per row, as key:value (e.g. marginTop:8, padding:8)",
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproductprice"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "Add to Cart",
+        "name": "mobileProductAddToCartProperties",
+        "valueType": "string",
+        "collapsible": true,
+        "condition": {
+          "==": [
+            {
+              "var": "mobileappcustomproductdetails"
+            },
+            true
+          ]
+        },
+        "fields": [
+          {
+            "component": "boolean",
+            "name": "mobileappshowproductaddtocartbutton",
+            "label": "Enable Add to Cart Button",
+            "value": "false",
+            "valueType": "boolean",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobileappcustomproductdetails"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobileappproductaddtocartbuttonappearancevariant",
+            "label": "Content variant",
+            "valueType": "string",
+            "value": "text-icon",
+            "options": [
+              {
+                "name": "Text & Icon",
+                "value": "text-icon"
+              },
+              {
+                "name": "Text",
+                "value": "text"
+              },
+              {
+                "name": "Icon",
+                "value": "icon"
+              }
+            ],
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproductaddtocartbutton"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobileappproductaddtocartbuttonvariant",
+            "label": "Variant (button)",
+            "valueType": "string",
+            "value": "text",
+            "options": [
+              {
+                "name": "Primary",
+                "value": "contained"
+              },
+              {
+                "name": "Secondary",
+                "value": "contained-tonal"
+              },
+              {
+                "name": "Outlined",
+                "value": "outlined"
+              },
+              {
+                "name": "Quiet",
+                "value": "text"
+              },
+              {
+                "name": "Elevated",
+                "value": "elevated"
+              }
+            ],
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproductaddtocartbutton"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "component": "select",
+            "name": "mobileappproductaddtocartbuttonalignment",
+            "label": "Alignment",
+            "valueType": "string",
+            "value": "center",
+            "options": [
+              {
+                "name": "Left",
+                "value": "left"
+              },
+              {
+                "name": "Center",
+                "value": "center"
+              },
+              {
+                "name": "Right",
+                "value": "right"
+              },
+              {
+                "name": "Stretch",
+                "value": "stretch"
+              }
+            ],
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproductaddtocartbutton"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "component": "text",
+            "name": "mobileappproductaddtocartbuttonstyle",
+            "label": "Custom Mobile Style",
+            "valueType": "string[]",
+            "multi": true,
+            "description": "One style per row, as key:value (e.g. marginTop:8, padding:8)",
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproductaddtocartbutton"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "Product Description",
+        "name": "mobileProductDescriptionProperties",
+        "valueType": "string",
+        "collapsible": true,
+        "condition": {
+          "==": [
+            {
+              "var": "mobileappcustomproductdetails"
+            },
+            true
+          ]
+        },
+        "fields": [
+          {
+            "component": "boolean",
+            "name": "mobileappshowproductdescription",
+            "label": "Enable Product Description",
+            "value": "false",
+            "valueType": "boolean",
+            "condition": {
+              "==": [
+                {
+                  "var": "mobileappcustomproductdetails"
+                },
+                true
+              ]
+            }
+          },
+          {
+            "component": "text",
+            "name": "mobileappproductdescriptionstyle",
+            "label": "Custom Mobile Style",
+            "valueType": "string[]",
+            "multi": true,
+            "description": "One style per row, as key:value (e.g. marginTop:8, padding:8)",
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "mobileappcustomproductdetails"
+                    },
+                    true
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "mobileappshowproductdescription"
+                    },
+                    true
+                  ]
+                }
+              ]
+            }
           }
         ]
       }

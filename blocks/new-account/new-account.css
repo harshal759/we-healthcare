@@ -22,19 +22,12 @@ main > .section:has(.new-account-block) > div {
   background: #fff;
 }
 
-.new-account-block .new-account-heading {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #111;
-}
-
 .new-account-block .new-account-wrapper {
   width: 100%;
   min-width: 0;
 }
 
-/* Progress dots below title; wizard uses display:contents */
+/* Wizard children flow as form children via display:contents. */
 .new-account-block form {
   display: flex;
   flex-direction: column;

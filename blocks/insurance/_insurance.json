@@ -23,9 +23,8 @@
       "fields": [
         {
           "component": "text",
-          "name": "title",
-          "label": "Title",
-          "value": "Life Insurance",
+          "name": "formtitle",
+          "label": "Form Title",
           "valueType": "string",
           "description": "Main heading of the form"
         },

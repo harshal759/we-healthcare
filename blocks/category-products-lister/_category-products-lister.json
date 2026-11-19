@@ -172,18 +172,22 @@
         },
         {
           "component": "select",
-          "name": "mobileimagestyle",
-          "label": "Image Resize Mode",
+          "name": "mobilesort",
+          "label": "Sort by",
           "valueType": "string",
-          "value": "contain",
+          "value": "none",
           "options": [
             {
-              "name": "Contain",
-              "value": "contain"
+              "name": "Name (A-Z)",
+              "value": "alphabetical"
             },
             {
-              "name": "Cover",
-              "value": "cover"
+              "name": "Name (Z-A)",
+              "value": "alphabetical-reverse"
+            },
+            {
+              "name": "None",
+              "value": "none"
             }
           ]
         },
@@ -222,6 +226,23 @@
           "description": "Number of items per row (1-12). Applies only when Layout is Vertical/Grid"
         },
         {
+          "component": "select",
+          "name": "mobileimagestyle",
+          "label": "Image Resize Mode",
+          "valueType": "string",
+          "value": "contain",
+          "options": [
+            {
+              "name": "Contain",
+              "value": "contain"
+            },
+            {
+              "name": "Cover",
+              "value": "cover"
+            }
+          ]
+        },
+        {
           "component": "text",
           "name": "mobileimagewidth",
           "label": "Image width",
@@ -239,32 +260,81 @@
         },
         {
           "component": "select",
-          "name": "mobilesort",
-          "label": "Sort by",
+          "name": "mobiletitlesize",
+          "label": "Title size",
           "valueType": "string",
-          "value": "none",
+          "value": "",
+          "description": "Leave on Default to use the app's size for the item variant.",
           "options": [
-            {
-              "name": "Name (A-Z)",
-              "value": "alphabetical"
-            },
-            {
-              "name": "Name (Z-A)",
-              "value": "alphabetical-reverse"
-            },
-            {
-              "name": "None",
-              "value": "none"
-            }
+            { "name": "Default", "value": "" },
+            { "name": "X-Small", "value": "labelSmall" },
+            { "name": "Small", "value": "labelMedium" },
+            { "name": "Medium", "value": "labelLarge" },
+            { "name": "Large", "value": "titleMedium" },
+            { "name": "X-Large", "value": "titleLarge" }
           ]
         },
         {
-          "component": "text",
-          "name": "mobilecategoryfilter",
-          "label": "Category filter",
-          "value": "",
+          "component": "select",
+          "name": "mobiletitlefontweight",
+          "label": "Title font weight",
           "valueType": "string",
-          "description": "Categories to show, comma-separated (e.g. Electric or Hybrid, Fuel). Leave empty to use the categories of the products in the folder"
+          "value": "regular",
+          "options": [
+            { "name": "Light", "value": "light" },
+            { "name": "Regular", "value": "regular" },
+            { "name": "Bold", "value": "bold" },
+            { "name": "Black", "value": "black" }
+          ]
+        },
+        {
+          "component": "boolean",
+          "name": "mobilehidesubtitle",
+          "label": "Hide subtitle",
+          "value": "false",
+          "valueType": "boolean",
+          "description": "Hide the subtitle of each list item"
+        },
+        {
+          "component": "select",
+          "name": "mobilesubtitlesize",
+          "label": "Subtitle size",
+          "valueType": "string",
+          "value": "",
+          "description": "Leave on Default to use the app's size for the item variant.",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "X-Small", "value": "labelSmall" },
+            { "name": "Small", "value": "labelMedium" },
+            { "name": "Medium", "value": "labelLarge" },
+            { "name": "Large", "value": "titleMedium" },
+            { "name": "X-Large", "value": "titleLarge" }
+          ],
+          "condition": {
+            "!=": [
+              { "var": "mobilehidesubtitle" },
+              true
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "name": "mobilesubtitlefontweight",
+          "label": "Subtitle font weight",
+          "valueType": "string",
+          "value": "light",
+          "options": [
+            { "name": "Light", "value": "light" },
+            { "name": "Regular", "value": "regular" },
+            { "name": "Bold", "value": "bold" },
+            { "name": "Black", "value": "black" }
+          ],
+          "condition": {
+            "!=": [
+              { "var": "mobilehidesubtitle" },
+              true
+            ]
+          }
         },
         {
           "component": "text",

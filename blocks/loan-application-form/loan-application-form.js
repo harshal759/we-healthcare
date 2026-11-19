@@ -119,8 +119,7 @@ function applyButtonConfigToSubmitButton(block, config) {
   if (buttonData && String(buttonData).trim()) submitButton.dataset.buttonData = String(buttonData).trim();
 }
 
-function buildLoanApplicationFormDef(config = {}) {
-  const formTitle = loanApplicationFormWizardTitle ;
+function buildLoanApplicationFormDef() {
   const phoneConsentText = "By entering your phone number you're authorizing SecurFinancial to use this number to call, text and send you messages by any method. We won't charge you for any messages but your service provider may.";
   const authorizeText = "I authorize SecurFinancial to verify my credit. I've read and agreed to Mortgage's Terms of Use, Privacy Policy and Consent to Receive Electronic Documents.";
   const stateOptions = ['', 'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
@@ -130,12 +129,6 @@ function buildLoanApplicationFormDef(config = {}) {
     fieldType: 'form',
     appliedCssClassNames: 'loan-application-form-form loan-application-form-wizard',
     items: [
-      {
-        id: 'heading-loan-application',
-        fieldType: 'heading',
-        label: { value: formTitle },
-        appliedCssClassNames: 'col-12 loan-application-form-heading',
-      },
       {
         id: 'panel-wizard',
         name: 'wizard',
@@ -382,12 +375,12 @@ function attachLoanApplicationFormStepEvents(wizard, form, stepEvent, startedEve
 export default async function decorate(block) {
   const config = readBlockConfig(block) || {};
   loanApplicationFormWizardTitle =
-  (config.formtitle ?? config['form-title'] ?? '')
+  (config.wizardtitle ?? config['wizard-title'] ?? config.formtitle ?? config['form-title'] ?? '')
     .toString()
-    .trim() || 'Home Loan Application Form';
+    .trim();
 
   loanApplicationFormWizardName =
-  (config.formname ?? config['form-name'] ?? '')
+  (config.wizardname ?? config['wizard-name'] ?? config.formname ?? config['form-name'] ?? '')
     .toString()
     .trim() || 'home-loan-application';
   
@@ -398,7 +391,7 @@ export default async function decorate(block) {
 
   block.classList.add('loan-application-form-block');
 
-  const formDef = buildLoanApplicationFormDef(config);
+  const formDef = buildLoanApplicationFormDef();
   const formContainer = document.createElement('div');
   formContainer.className = 'loan-application-form-wrapper form';
 
