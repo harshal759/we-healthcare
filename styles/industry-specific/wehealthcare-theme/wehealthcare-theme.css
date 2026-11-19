@@ -1063,6 +1063,11 @@ body.wehealthcare-theme .section.whc-plan-recommendations .cards-wrapper .cards 
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.0588235294);
   position: relative;
 }
+
+body.wehealthcare-theme .section.whc-plan-recommendations .cards-wrapper .cards > ul > li .cards-card-body {
+  padding: 0;
+}
+
 body.wehealthcare-theme .section.whc-plan-recommendations .cards-wrapper .cards > ul > li:nth-child(2) {
   border: 4px solid #00c4ff;
   box-sizing: content-box;
